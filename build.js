@@ -67,14 +67,25 @@ function categorize(text) {
 
 // -- Keyword tag generation --
 const KW_CLASSES = ['kw-hot', 'kw-new', 'kw-trend', 'kw-insight', 'kw-warn'];
+// Tech terms preserved in Chinese translations
+const TECH_TERMS = ['agent','agents','LLM','API','MCP','RAG','GPT','Claude','OpenAI','Anthropic',
+  'token','tokens','prompt','prompts','fine-tuning','vibe','coding','model','models','inference',
+  'embedding','vector','pipeline','workflow','tool','tools','memory','context','multimodal','RL'];
 function extractKeywords(text) {
-  const words = text.replace(/https?:\/\/\S+/g, '').split(/[\s,.!?;:]+/).filter(w => w.length > 3);
+  const clean = text.replace(/https?:\/\/\S+/g, '');
+  // Extract preserved English tech terms first
+  const techFound = TECH_TERMS.filter(t => new RegExp('\\b' + t + '\\b', 'i').test(clean))
+    .slice(0, 3);
+  if (techFound.length >= 2) {
+    return techFound.slice(0, 3).map((t, i) => ({ text: t, cls: KW_CLASSES[i % KW_CLASSES.length] }));
+  }
+  // Fallback: frequency-based on space-separated words (works for English, picks up tech terms in Chinese)
+  const words = clean.split(/[\s,.!?;:，。！？；：""''【】《》\u3000]+/).filter(w => w.length > 2 && /[a-zA-Z]/.test(w));
   const freq = {};
   words.forEach(w => { freq[w] = (freq[w] || 0) + 1; });
-  return Object.entries(freq)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map((e, i) => ({ text: e[0], cls: KW_CLASSES[i % KW_CLASSES.length] }));
+  const top = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 3);
+  return top.length ? top.map((e, i) => ({ text: e[0], cls: KW_CLASSES[i % KW_CLASSES.length] }))
+    : techFound.map((t, i) => ({ text: t, cls: KW_CLASSES[i % KW_CLASSES.length] }));
 }
 
 // -- Heat bar width --
@@ -265,7 +276,7 @@ function buildHTML(feedX, feedPodcasts, dateStr, translationsByUrl = new Map(), 
   function detailCard(t) {
     const enText = t.text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
     const zhText = trByUrl(t.url) || enText;
-    const kws = extractKeywords(t.text);
+    const kws = extractKeywords(zhText);
     const kwHTML = kws.map(k => `<span class="kw ${k.cls}">${esc(k.text)}</span>`).join('');
     const bioparts = t.bio.split(/[|,\n]/).map(s => s.trim()).filter(Boolean).slice(0, 3);
     const idTags = bioparts.map((p, i) => {
