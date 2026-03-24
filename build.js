@@ -227,17 +227,21 @@ function buildHTML(feedX, feedPodcasts, dateStr, translationsByUrl = new Map(), 
     }
   }
 
-  allTweets.sort((a, b) => b.likes - a.likes);
-  const maxLikes = allTweets[0]?.likes || 1;
+  // Filter out link-only tweets (no readable text content)
+  const isLinkOnly = t => t.text.replace(/https?:\/\/\S+/g, '').replace(/\s+/g, '').length < 10;
+  const meaningfulTweets = allTweets.filter(t => !isLinkOnly(t));
 
-  const topTweets = allTweets.slice(0, 9);
+  meaningfulTweets.sort((a, b) => b.likes - a.likes);
+  const maxLikes = meaningfulTweets[0]?.likes || 1;
+
+  const topTweets = meaningfulTweets.slice(0, 9);
   const productInsights = topTweets.slice(0, 3);
   const techInsights = topTweets.slice(3, 6);
   const userInsights = topTweets.slice(6, 9);
 
   const catGroups = {};
   for (const cat of CATEGORIES) catGroups[cat.name] = { ...cat, items: [] };
-  for (const t of allTweets) {
+  for (const t of meaningfulTweets) {
     const cat = categorize(t.text + ' ' + t.bio);
     catGroups[cat.name].items.push(t);
   }
