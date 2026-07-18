@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Builders Daily Digest - 2026.07.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #f8f9fc;
+    --card: #ffffff;
+    --text: #1e1e2e;
+    --text2: #555;
+    --text3: #999;
+    --accent: #6366f1;
+    --accent2: #8b5cf6;
+    --border: rgba(99,102,241,0.08);
+    --glow: rgba(99,102,241,0.12);
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', 'PingFang SC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    position: relative;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+    border-radius: 20px;
+    padding: 44px 40px 36px;
+    color: #fff;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 30%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+  .header h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+  }
+  .header .sub { font-size: 14px; opacity: 0.8; margin-top: 6px; font-weight: 400; }
+  .header .stats-bar {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    padding: 5px 14px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ===== INFOGRAPHIC ===== */
+  .infographic {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px 32px 24px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .infographic h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .info-row {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  /* Left: topic radar */
+  .topic-radar { display: flex; flex-direction: column; gap: 10px; }
+  .topic-bar-item { display: flex; align-items: center; gap: 8px; }
+  .topic-bar-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text2);
+    width: 72px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .topic-bar-track {
+    flex: 1;
+    height: 18px;
+    background: #f3f4f6;
+    border-radius: 9px;
+    overflow: hidden;
+    position: relative;
+  }
+  .topic-bar-fill {
+    height: 100%;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    transition: width 0.6s ease;
+  }
+  /* Center: connection map */
+  .connection-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .connection-map svg { width: 100%; max-width: 420px; }
+  .map-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--text3);
+  }
+  .map-legend span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  /* Right: key numbers */
+  .key-numbers { display: flex; flex-direction: column; gap: 14px; }
+  .kn-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #fafbfd;
+    border-radius: 12px;
+    border: 1px solid #f0f0f5;
+  }
+  .kn-num {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .kn-label { font-size: 12px; color: var(--text2); line-height: 1.4; }
+
+  @media (max-width: 900px) {
+    .info-row { grid-template-columns: 1fr; }
+  }
+
+  /* ===== INSIGHTS TOP GRID ===== */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .insight-col { display: flex; flex-direction: column; gap: 14px; }
+
+  .insight-col-header {
+    padding: 14px 18px;
+    border-radius: 14px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .insight-col-header .col-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .col-product { background: linear-gradient(135deg, #f97316, #ef4444); }
+  .col-tech { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+  .col-user { background: linear-gradient(135deg, #059669, #10b981); }
+
+  .insight-card {
+    position: relative;
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid var(--border);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s ease;
+    overflow: hidden;
+  }
+  .insight-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .col-product ~ .insight-card::before,
+  .col-product + .insight-card::before { background: linear-gradient(90deg, #f97316, #ef4444); }
+  .insight-col:nth-child(1) .insight-card::before { background: linear-gradient(90deg, #f97316, #ef4444); }
+  .insight-col:nth-child(2) .insight-card::before { background: linear-gradient(90deg, #4f46e5, #7c3aed); }
+  .insight-col:nth-child(3) .insight-card::before { background: linear-gradient(90deg, #059669, #10b981); }
+  .insight-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px var(--glow);
+  }
+  .insight-card:hover::before { opacity: 1; }
+
+  .insight-card .title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .insight-card .desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 14px;
+  }
+  .insight-card .sources { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .chip:hover { transform: translateY(-1px); text-decoration: none; }
+  .chip-purple { background: #ede9fe; color: #5b21b6; border-color: #ddd6fe; }
+  .chip-green { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+  .chip-orange { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+
+  /* ===== DIVIDER ===== */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 12px 0 28px;
+    font-size: 12px;
+    color: var(--text3);
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ddd, transparent);
+  }
+
+  /* ===== PODCAST BANNER ===== */
+  .podcast-banner {
+    background: var(--card);
+    border: 1px solid #f9a8d4;
+    border-radius: var(--radius);
+    padding: 0;
+    margin-bottom: 24px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .podcast-left {
+    background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .podcast-left .podcast-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: #be185d;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-bottom: 14px;
+  }
+  .podcast-left h3 { font-size: 17px; color: #9d174d; margin-bottom: 8px; font-weight: 700; }
+  .podcast-guest-tags {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px;
+  }
+  .podcast-guest-tags .g-tag {
+    padding: 2px 8px;
+    background: rgba(190,24,93,0.1);
+    color: #9d174d;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .podcast-left .tagline { font-size: 13px; color: #777; line-height: 1.6; }
+  .podcast-right {
+    padding: 24px 28px;
+  }
+  .podcast-right ul { list-style: none; padding: 0; }
+  .podcast-right li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+  }
+  .podcast-right li:last-child { border-bottom: none; }
+  .podcast-right li .li-icon {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .podcast-right li strong { color: #9d174d; font-weight: 600; }
+
+  /* ===== DETAIL GRID ===== */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .detail-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .detail-card:hover {
+    box-shadow: 0 8px 28px var(--glow);
+    transform: translateY(-2px);
+  }
+  .detail-card .cat-label {
+    align-self: flex-start;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  /* Author */
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .real-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f3f4f6;
+    flex-shrink: 0;
+    background: #e5e7eb;
+  }
+  .author-meta { flex: 1; min-width: 0; }
+  .author-meta .name { font-weight: 700; font-size: 14px; color: var(--text); }
+  .author-meta .id-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .id-tag {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .id-role { background: #ede9fe; color: #6d28d9; }
+  .id-company { background: #dbeafe; color: #1d4ed8; }
+  .id-product { background: #fef3c7; color: #92400e; }
+
+  .detail-card .content {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 14px;
+  }
+
+  /* Engagement bar */
+  .engagement {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+  }
+  .engagement .link-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    background: #ede9fe;
+    transition: all 0.2s;
+  }
+  .engagement .link-btn:hover { background: #ddd6fe; text-decoration: none; }
+  .heat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text3);
+  }
+  .heat-track {
+    width: 48px; height: 4px;
+    background: #f3f4f6;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .heat-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #6366f1, #a855f7);
+  }
+
+  /* ===== CATEGORY GROUP ===== */
+  .cat-group { margin-bottom: 28px; }
+  .cat-group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 0 4px;
+  }
+  .cat-group-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .cat-group-header h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .cat-group-header .cat-count {
+    font-size: 12px;
+    color: var(--text3);
+    margin-left: auto;
+  }
+
+  /* Keyword tag on detail card */
+  .kw-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .kw {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .kw-hot { background: #fef2f2; color: #dc2626; }
+  .kw-new { background: #eff6ff; color: #2563eb; }
+  .kw-trend { background: #f0fdf4; color: #16a34a; }
+  .kw-insight { background: #fefce8; color: #a16207; }
+  .kw-warn { background: #fff7ed; color: #ea580c; }
+
+  /* ===== TOP NAV ===== */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .nav-btn:hover { background: #f3f4f6; }
+  .nav-btn.active {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+  }
+  .nav-badge {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.25);
+    font-weight: 700;
+  }
+  .nav-btn:not(.active) .nav-badge {
+    background: #ede9fe;
+    color: #6d28d9;
+  }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ===== BOOKMARK BTN ===== */
+  .bm-btn {
+    width: 30px; height: 30px;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .bm-btn:hover { background: #fef3c7; }
+  .bm-btn.bookmarked { background: #fef3c7; }
+
+  /* ===== HISTORY PANEL ===== */
+  .history-list { display: flex; flex-direction: column; gap: 10px; }
+  .history-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .history-item:hover {
+    box-shadow: 0 4px 16px var(--glow);
+    transform: translateY(-1px);
+  }
+  .history-item.current {
+    border-color: #6366f1;
+    background: linear-gradient(135deg, rgba(99,102,241,0.04), rgba(139,92,246,0.04));
+  }
+  .history-date {
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    min-width: 48px;
+    text-align: center;
+  }
+  .history-info { flex: 1; }
+  .history-info .hi-title { font-size: 14px; font-weight: 600; color: var(--text); }
+  .history-info .hi-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .history-tag {
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .ht-current { background: #ede9fe; color: #6d28d9; }
+  .ht-past { background: #f3f4f6; color: #999; }
+  .history-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text3);
+    font-size: 14px;
+  }
+
+  /* ===== FAVORITES PANEL ===== */
+  .fav-filters {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .fav-filter-btn {
+    padding: 6px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    background: var(--card);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .fav-filter-btn:hover { border-color: #a5b4fc; }
+  .fav-filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .fav-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    transition: all 0.2s;
+  }
+  .fav-card:hover { box-shadow: 0 4px 16px var(--glow); }
+  .fav-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+  .fav-status-select {
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    background: var(--card);
+    color: var(--text2);
+  }
+  .fav-remove-btn {
+    border: none;
+    background: #fef2f2;
+    color: #dc2626;
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .fav-remove-btn:hover { background: #fecaca; }
+  .fav-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text3);
+    font-size: 14px;
+  }
+  .fav-date-label {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+  .status-deep { background: #ede9fe; color: #6d28d9; border-color: #ddd6fe; }
+  .status-unread { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+  .status-think { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 24px 0 8px;
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .footer a { font-weight: 500; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .insights-grid { grid-template-columns: 1fr; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .podcast-banner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .page { padding: 16px 12px; }
+    .header { padding: 28px 20px 24px; border-radius: 14px; }
+    .header h1 { font-size: 22px; }
+    .top-nav { top: 4px; }
+  }
+
+
+  /* ===== LEFT SIDEBAR ===== */
+  .app-layout { display: flex; min-height: 100vh; }
+  .left-sidebar {
+    width: 220px; position: fixed; top: 0; left: 0; height: 100vh;
+    background: #1a1a2e; color: #e2e8f0; overflow-y: auto; z-index: 100;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .left-sidebar::-webkit-scrollbar { width: 4px; }
+  .left-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+  .sidebar-logo {
+    padding: 24px 20px 16px; font-family: 'Noto Serif SC', serif;
+    font-size: 15px; font-weight: 900; color: #fff;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .sidebar-back {
+    display: flex; align-items: center; gap: 6px; padding: 12px 20px;
+    font-size: 13px; color: #94a3b8; cursor: pointer; transition: all 0.2s;
+    border: none; background: none; width: 100%; text-align: left; font-family: inherit;
+  }
+  .sidebar-back:hover { color: #fff; background: rgba(255,255,255,0.05); }
+  .sidebar-section {
+    padding: 16px 16px 8px; font-size: 11px; font-weight: 700;
+    color: #64748b; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .date-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+    cursor: pointer; transition: all 0.2s; border: none; background: none;
+    width: 100%; text-align: left; font-family: inherit; color: #cbd5e1; font-size: 13px;
+  }
+  .date-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .date-item.active { background: rgba(99,102,241,0.2); color: #a5b4fc; border-left: 3px solid #6366f1; }
+  .date-item .date-label { flex: 1; }
+  .date-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .date-tag-today { background: rgba(99,102,241,0.3); color: #a5b4fc; }
+  .date-tag-past { background: rgba(255,255,255,0.08); color: #94a3b8; }
+  .sidebar-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 12px 16px; }
+  .fav-nav-btn {
+    display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+    cursor: pointer; transition: all 0.2s; border: none; background: none;
+    width: 100%; text-align: left; font-family: inherit; color: #fbbf24; font-size: 13px; font-weight: 600;
+  }
+  .fav-nav-btn:hover { background: rgba(255,255,255,0.06); }
+  .fav-nav-btn.active { background: rgba(251,191,36,0.15); border-left: 3px solid #fbbf24; }
+  .fav-badge {
+    font-size: 10px; background: rgba(251,191,36,0.25); color: #fbbf24;
+    padding: 1px 6px; border-radius: 8px; font-weight: 800; margin-left: auto;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main-content { margin-left: 220px; flex: 1; min-height: 100vh; }
+  .main-content .page { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* History view */
+  .history-main-view { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  .history-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .history-header h2 { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 900; }
+  .history-date-badge {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #fff;
+    padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+  }
+  .history-insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .history-insight-card {
+    background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 16px;
+  }
+  .history-insight-card .hi-cat { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+  .history-insight-card .hi-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .history-insight-card .hi-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+  .history-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+
+  /* Favorites view */
+  .fav-main-view { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  .fav-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .fav-header h2 { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 900; }
+  .fav-filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .fav-filter-btn {
+    padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border);
+    background: var(--card); cursor: pointer; font-family: inherit;
+    font-size: 12px; font-weight: 600; color: var(--text2); transition: all 0.2s;
+  }
+  .fav-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .fav-filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .fav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .fav-card {
+    background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+    padding: 16px; transition: all 0.2s;
+  }
+  .fav-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .fav-top-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .fav-date-label { font-size: 11px; color: var(--text3); flex: 1; }
+  .fav-status-select {
+    font-size: 10px; padding: 2px 6px; border-radius: 6px;
+    border: 1px solid var(--border); font-family: inherit; cursor: pointer;
+  }
+  .fav-remove-btn {
+    width: 24px; height: 24px; border: none; background: #fee2e2; color: #ef4444;
+    border-radius: 6px; cursor: pointer; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .fav-remove-btn:hover { background: #fecaca; }
+  .fav-empty-msg { text-align: center; padding: 60px 20px; color: var(--text3); font-size: 14px; }
+
+  /* Language toggle button */
+  .lang-btn {
+    padding: 4px 14px; border-radius: 20px; border: 1.5px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.15); color: #fff; font-size: 12px; font-weight: 700;
+    cursor: pointer; font-family: inherit; transition: all 0.2s; letter-spacing: 0.5px;
+  }
+  .lang-btn:hover { background: rgba(255,255,255,0.3); }
+
+  /* Podcast bookmark button */
+  .podcast-bm-btn {
+    border: 1.5px solid #f9a8d4; background: rgba(157,23,77,0.08); color: #9d174d;
+    border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: 13px;
+    font-weight: 600; transition: all 0.2s;
+  }
+  .podcast-bm-btn:hover { background: rgba(157,23,77,0.15); border-color: #f472b6; }
+  .podcast-bm-btn.bookmarked { background: rgba(157,23,77,0.2); color: #be185d; border-color: #ec4899; }
+
+  /* Bookmark buttons */
+  .insight-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .insight-bm-btn, .bm-btn {
+    width: 26px; height: 26px; border: none; background: #f3f4f6; border-radius: 6px;
+    cursor: pointer; font-size: 13px; display: flex; align-items: center;
+    justify-content: center; transition: all 0.2s; flex-shrink: 0;
+  }
+  .insight-bm-btn:hover, .bm-btn:hover { background: #fef3c7; }
+  .insight-bm-btn.bookmarked, .bm-btn.bookmarked { background: #fef3c7; }
+
+  /* Mobile */
+  .mobile-menu-btn {
+    display: none; position: fixed; top: 12px; left: 12px; z-index: 200;
+    width: 40px; height: 40px; border: none; background: #1a1a2e; color: #fff;
+    border-radius: 10px; font-size: 18px; cursor: pointer;
+    align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .mobile-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); z-index: 999;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+  @media (max-width: 768px) {
+    .left-sidebar { transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; }
+    .left-sidebar.mobile-open { transform: translateX(0); }
+    .main-content { margin-left: 0; }
+    .mobile-menu-btn { display: flex; }
+    .history-insights-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileMenu()">&#9776;</button>
+<div class="mobile-overlay" id="mobile-overlay" onclick="toggleMobileMenu()"></div>
+
+<div class="app-layout">
+  <div class="left-sidebar" id="left-sidebar">
+    <div class="sidebar-logo">&#128218; 日期目录</div>
+    <button class="sidebar-back" id="back-home" onclick="showToday()">&#8592; 返回首页</button>
+    <div class="sidebar-section">历史记录</div>
+    <div id="date-list"></div>
+    <div class="sidebar-divider"></div>
+    <button class="fav-nav-btn" id="fav-nav-btn" onclick="showFavorites()">
+      &#11088; 收藏 <span class="fav-badge" id="badge-fav">0</span>
+    </button>
+  </div>
+
+  <div class="main-content">
+    <div id="today-view">
+      <div class="page">
+        <div class="header">
+          <div class="header-inner">
+            <div>
+              <h1>AI Builders Daily Digest</h1>
+              <div class="sub">AI 产品经理每日必读 | 追踪真正在构建产品的人</div>
+            </div>
+            <div class="stats-bar">
+              <span class="stat-pill">2026.07.17</span>
+              <span class="stat-pill">18 位构建者</span>
+              <span class="stat-pill">40 条动态</span>
+              <span class="stat-pill">1 期播客</span>
+              <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">EN</button>
+            </div>
+          </div>
+        </div>
+        <div class="insights-grid">
+<div class="insight-col">
+      <div class="insight-col-header col-product">
+        <div class="col-icon">P</div>产品应用启示
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="Something I have been thinking about: in the past, the best engineers I knew spe..." data-zh="Something I have been thinking about: in the past, the best engineers I knew spe...">Something I have been thinking about: in the past, the best engineers I knew spe...</span></div>
+        <div class="desc"><span class="lang-text" data-en="Something I have been thinking about: in the past, the best engineers I knew spent a lot of time automating their work in various ways. Better vim/emacs automations, writing lint rules to catch repeat" data-zh="Something I have been thinking about: in the past, the best engineers I knew spent a lot of time automating their work in various ways. Better vim/emacs automations, writing lint rules to catch repeat">Something I have been thinking about: in the past, the best engineers I knew spent a lot of time automating their work in various ways. Better vim/emacs automations, writing lint rules to catch repeat</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-orange" href="https://x.com/bcherny/status/2077460395279692197" target="_blank">Boris Cherny &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="We've had no 5h limit in Codex plus and pro for a few days. Do you think it is b..." data-zh="We've had no 5h limit in Codex plus and pro for a few days. Do you think it is b...">We've had no 5h limit in Codex plus and pro for a few days. Do you think it is b...</span></div>
+        <div class="desc"><span class="lang-text" data-en="We've had no 5h limit in Codex plus and pro for a few days. Do you think it is better or are you finding it difficult to manage the usage included in the weekly limit effectively?
+
+If we were to make " data-zh="We've had no 5h limit in Codex plus and pro for a few days. Do you think it is better or are you finding it difficult to manage the usage included in the weekly limit effectively?
+
+If we were to make ">We've had no 5h limit in Codex plus and pro for a few days. Do you think it is better or are you finding it difficult to manage the usage included in the weekly limit effectively?
+
+If we were to make </span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-orange" href="https://x.com/thsottiaux/status/2077632589498913087" target="_blank">Thibault Sottiaux &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin ..." data-zh="ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin ...">ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin ...</span></div>
+        <div class="desc"><span class="lang-text" data-en="ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin skills" data-zh="ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin skills">ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin skills</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-orange" href="https://x.com/trq212/status/2077539537992229076" target="_blank">Thariq &rarr;</a></div>
+        </div>
+      </div></div>
+<div class="insight-col">
+      <div class="insight-col-header col-tech">
+        <div class="col-icon">T</div>技术启示
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z" data-zh="amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z">amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z</span></div>
+        <div class="desc"><span class="lang-text" data-en="amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z" data-zh="amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z">amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-purple" href="https://x.com/sama/status/2077489177374208000" target="_blank">Sam Altman &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpec..." data-zh="On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpec...">On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpec...</span></div>
+        <div class="desc"><span class="lang-text" data-en="On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. 
+
+What we have  found is that this most commonly occurs when:
+- Full access mode is enabled and cod" data-zh="On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. 
+
+What we have  found is that this most commonly occurs when:
+- Full access mode is enabled and cod">On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. 
+
+What we have  found is that this most commonly occurs when:
+- Full access mode is enabled and cod</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-purple" href="https://x.com/thsottiaux/status/2077630111499882637" target="_blank">Thibault Sottiaux &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="software engineering is the profession of automation https://t.co/5OQXE5VBRH" data-zh="software engineering is the profession of automation https://t.co/5OQXE5VBRH">software engineering is the profession of automation https://t.co/5OQXE5VBRH</span></div>
+        <div class="desc"><span class="lang-text" data-en="software engineering is the profession of automation https://t.co/5OQXE5VBRH" data-zh="software engineering is the profession of automation https://t.co/5OQXE5VBRH">software engineering is the profession of automation https://t.co/5OQXE5VBRH</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-purple" href="https://x.com/trq212/status/2077490092290253259" target="_blank">Thariq &rarr;</a></div>
+        </div>
+      </div></div>
+<div class="insight-col">
+      <div class="insight-col-header col-user">
+        <div class="col-icon">U</div>用户与市场启示
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="Now that we merged ChatGPT and Codex, what should we merge next? What's the doub..." data-zh="Now that we merged ChatGPT and Codex, what should we merge next? What's the doub...">Now that we merged ChatGPT and Codex, what should we merge next? What's the doub...</span></div>
+        <div class="desc"><span class="lang-text" data-en="Now that we merged ChatGPT and Codex, what should we merge next? What's the double or nothing move." data-zh="Now that we merged ChatGPT and Codex, what should we merge next? What's the double or nothing move.">Now that we merged ChatGPT and Codex, what should we merge next? What's the double or nothing move.</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-green" href="https://x.com/thsottiaux/status/2077627035418239230" target="_blank">Thibault Sottiaux &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="This is really clever. https://t.co/s8mRrtX6Rz" data-zh="This is really clever. https://t.co/s8mRrtX6Rz">This is really clever. https://t.co/s8mRrtX6Rz</span></div>
+        <div class="desc"><span class="lang-text" data-en="This is really clever. https://t.co/s8mRrtX6Rz" data-zh="This is really clever. https://t.co/s8mRrtX6Rz">This is really clever. https://t.co/s8mRrtX6Rz</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-green" href="https://x.com/steipete/status/2077303292225548539" target="_blank">Peter Steinberger &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects i..." data-zh="“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects i...">“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects i...</span></div>
+        <div class="desc"><span class="lang-text" data-en="“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it does" data-zh="“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it does">“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it does</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-green" href="https://x.com/steipete/status/2077544756390088777" target="_blank">Peter Steinberger &rarr;</a></div>
+        </div>
+      </div></div>
+        </div>
+        <div class="section-divider">信息源详情</div>
+        <div class="podcast-banner" id="podcast-banner">
+      <div class="podcast-left">
+        <div class="podcast-badge">&#127911; AI &amp; I by Every</div>
+        <h3><span class="lang-text" data-en="The Founder of a $1.5B AI Company on What Comes After the First Wave of AI Apps" data-zh="The Founder of a $1.5B AI Company on What Comes After the First Wave of AI Apps">The Founder of a $1.5B AI Company on What Comes After the First Wave of AI Apps</span></h3>
+        <div class="tagline" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <a href="https://www.youtube.com/playlist?list=PLuMcoKK9mKgHtW_o9h5sGO2vXrffKHwJL" target="_blank">观看完整内容 &rarr;</a>
+          <button class="podcast-bm-btn" id="podcast-bm-btn" title="收藏播客">&#9734; 收藏</button>
+        </div>
+      </div>
+      <div class="podcast-right">
+        <ul><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="Speaker 1 | 00:00 - 00:07
+You are the cofounder and CEO of Granolah" data-zh="Speaker 1 | 00:00 - 00:07
+You are the cofounder and CEO of Granolah">Speaker 1 | 00:00 - 00:07
+You are the cofounder and CEO of Granolah</span></li><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="One of the first new AI apps where people were like, holy shit" data-zh="One of the first new AI apps where people were like, holy shit">One of the first new AI apps where people were like, holy shit</span></li><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="Speaker 2 | 00:07 - 00:24
+Meeting notes are not the end all, be all value that everyone's running after" data-zh="Speaker 2 | 00:07 - 00:24
+Meeting notes are not the end all, be all value that everyone's running after">Speaker 2 | 00:07 - 00:24
+Meeting notes are not the end all, be all value that everyone's running after</span></li><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="There's something much bigger" data-zh="There's something much bigger">There's something much bigger</span></li><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="I think we are in the very, very early steps of a computing revolution" data-zh="I think we are in the very, very early steps of a computing revolution">I think we are in the very, very early steps of a computing revolution</span></li></ul>
+      </div>
+    </div>
+        <div class="cat-group">
+      <div class="cat-group-header">
+        <div class="cat-group-icon" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);">A</div>
+        <h3>Agent 架构与框架</h3>
+        <span class="cat-count">5 条动态</span>
+      </div>
+      <div class="detail-grid"><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">This</span><span class="kw kw-new">really</span><span class="kw kw-trend">clever</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/steipete" alt="Peter Steinberger">
+          <div class="author-meta">
+            <div class="name">Peter Steinberger</div>
+            <div class="id-row"><span class="id-tag id-role">Polyagentmorous ClawFather. Ca</span><span class="id-tag id-company">@OpenClaw🦞 + @OpenAI</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="This is really clever. https://t.co/s8mRrtX6Rz" data-zh="This is really clever. https://t.co/s8mRrtX6Rz">This is really clever. https://t.co/s8mRrtX6Rz</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/steipete/status/2077303292225548539" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 1,534<div class="heat-track"><div class="heat-fill" style="width:21%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">and</span><span class="kw kw-new">because</span><span class="kw kw-trend">doesn</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/steipete" alt="Peter Steinberger">
+          <div class="author-meta">
+            <div class="name">Peter Steinberger</div>
+            <div class="id-row"><span class="id-tag id-role">Polyagentmorous ClawFather. Ca</span><span class="id-tag id-company">@OpenClaw🦞 + @OpenAI</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it doesn't follow the right architectural patterns, these are failures of automation.” https://t.co/3dIgj0Hzs5" data-zh="“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it doesn't follow the right architectural patterns, these are failures of automation.” https://t.co/3dIgj0Hzs5">“If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it doesn't follow the right architectural patterns, these are failures of automation.” https://t.co/3dIgj0Hzs5</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/steipete/status/2077544756390088777" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 572<div class="heat-track"><div class="heat-fill" style="width:8%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">agents</span><span class="kw kw-new">coding</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/zarazhangrui" alt="Zara Zhang">
+          <div class="author-meta">
+            <div class="name">Zara Zhang</div>
+            <div class="id-row"><span class="id-tag id-role">Builder. Dangerously skips per</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Because I never learned programming the traditional way, using coding agents has been purely an act of creativity and self-expression
+
+GitHub is basically my Substack https://t.co/eZ6OA62XLZ" data-zh="Because I never learned programming the traditional way, using coding agents has been purely an act of creativity and self-expression
+
+GitHub is basically my Substack https://t.co/eZ6OA62XLZ">Because I never learned programming the traditional way, using coding agents has been purely an act of creativity and self-expression
+
+GitHub is basically my Substack https://t.co/eZ6OA62XLZ</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/zarazhangrui/status/2077388091044635010" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 239<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Mostly</span><span class="kw kw-new">true</span><span class="kw kw-trend">relentless</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/steipete" alt="Peter Steinberger">
+          <div class="author-meta">
+            <div class="name">Peter Steinberger</div>
+            <div class="id-row"><span class="id-tag id-role">Polyagentmorous ClawFather. Ca</span><span class="id-tag id-company">@OpenClaw🦞 + @OpenAI</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Mostly true, 5.6 is relentless. https://t.co/aBiolT4vMF" data-zh="Mostly true, 5.6 is relentless. https://t.co/aBiolT4vMF">Mostly true, 5.6 is relentless. https://t.co/aBiolT4vMF</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/steipete/status/2077614430658191825" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 201<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">agent</span><span class="kw kw-new">agents</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/zarazhangrui" alt="Zara Zhang">
+          <div class="author-meta">
+            <div class="name">Zara Zhang</div>
+            <div class="id-row"><span class="id-tag id-role">Builder. Dangerously skips per</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="If you want agents to actually work inside a company, you have to design the company so they can read it
+
+Shopify did this with an agent that had no private chat function at all, only public channels. The side effect was peer learning https://t.co/L1jub0HgYw" data-zh="If you want agents to actually work inside a company, you have to design the company so they can read it
+
+Shopify did this with an agent that had no private chat function at all, only public channels. The side effect was peer learning https://t.co/L1jub0HgYw">If you want agents to actually work inside a company, you have to design the company so they can read it
+
+Shopify did this with an agent that had no private chat function at all, only public channels. The side effect was peer learning https://t.co/L1jub0HgYw</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/zarazhangrui/status/2077417579837309040" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 134<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div></div>
+    </div><div class="cat-group">
+      <div class="cat-group-header">
+        <div class="cat-group-icon" style="background:linear-gradient(135deg,#f97316,#ef4444);">P</div>
+        <h3>产品案例与实战</h3>
+        <span class="cat-count">11 条动态</span>
+      </div>
+      <div class="detail-grid"><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">agent</span><span class="kw kw-new">agents</span><span class="kw kw-trend">Claude</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/bcherny" alt="Boris Cherny">
+          <div class="author-meta">
+            <div class="name">Boris Cherny</div>
+            <div class="id-row"><span class="id-tag id-role">Claude Code @anthropicai</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Something I have been thinking about: in the past, the best engineers I knew spent a lot of time automating their work in various ways. Better vim/emacs automations, writing lint rules to catch repeat code issues, building up a suite of e2e tests so they don't need to smoke test the app manually. These kinds of things were the highest leverage activities an engineer could do, because it multiplied their own output, which in turn meant they could build more things.
+
+I think many of these automations have become even more important now. This is true for a number of reasons.
+
+First, infra and DevX automation speeds you up. And if you are running an army of agents, each of those agents will be sped up also. More automation == more output per unit of time.
+
+Second, moving things to code improves efficiency. Your agent could fix an issue every time it sees that issue happen, but that uses tokens and might miss cases. If Claude instead writes a lint rule, CI step, or routine, that class of issue can be fully automated forever. This is really what people are talking about when they talk about loops -- it's about automating entire types of busywork rather than solving them one off. This isn't a new idea at all. Engineers have been doing this for a long time!
+
+Third and most importantly, automation makes it possible for others to contribute to the codebase more easily. Increasingly what I am seeing is engineers are contributing to codebases on day one because Claude can navigate the codebase for them, and that non-engineers are able to contribute to a codebase as effectively as engineers can. What gets in the way of both of these is domain knowledge that lives in peoples' heads rather than in automation -- the stuff you used to have to learn when ramping up. What has changed thanks to agents is the domain knowledge that can be encoded as infrastructure is no longer limited to what is expressible in lint rules and types and tests; it can now capture nearly all domain knowledge, encoded as code comments and skills and CLAUDE.md rules and memories. If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it doesn't follow the right architectural patterns, these are failures of automation.
+
+Every team should be writing the CLAUDE.md's, REVIEW.md's, skills, and docs that enable agents to productively work in their codebase with zero additional context from the prompter. This sounds crazy, and at the same time is a natural extension of the stuff engineers have always done: automate, and encode domain knowledge as infrastructure. As the model gets smarter and as the harness matures, this task becomes easier. In the meantime, it is on every team to look for ways to convert their domain knowledge to infra so that Claude can write code better, so that code review catches issues automatically, and so the next person working on your codebase can contribute more easily." data-zh="Something I have been thinking about: in the past, the best engineers I knew spent a lot of time automating their work in various ways. Better vim/emacs automations, writing lint rules to catch repeat code issues, building up a suite of e2e tests so they don't need to smoke test the app manually. These kinds of things were the highest leverage activities an engineer could do, because it multiplied their own output, which in turn meant they could build more things.
+
+I think many of these automations have become even more important now. This is true for a number of reasons.
+
+First, infra and DevX automation speeds you up. And if you are running an army of agents, each of those agents will be sped up also. More automation == more output per unit of time.
+
+Second, moving things to code improves efficiency. Your agent could fix an issue every time it sees that issue happen, but that uses tokens and might miss cases. If Claude instead writes a lint rule, CI step, or routine, that class of issue can be fully automated forever. This is really what people are talking about when they talk about loops -- it's about automating entire types of busywork rather than solving them one off. This isn't a new idea at all. Engineers have been doing this for a long time!
+
+Third and most importantly, automation makes it possible for others to contribute to the codebase more easily. Increasingly what I am seeing is engineers are contributing to codebases on day one because Claude can navigate the codebase for them, and that non-engineers are able to contribute to a codebase as effectively as engineers can. What gets in the way of both of these is domain knowledge that lives in peoples' heads rather than in automation -- the stuff you used to have to learn when ramping up. What has changed thanks to agents is the domain knowledge that can be encoded as infrastructure is no longer limited to what is expressible in lint rules and types and tests; it can now capture nearly all domain knowledge, encoded as code comments and skills and CLAUDE.md rules and memories. If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it doesn't follow the right architectural patterns, these are failures of automation.
+
+Every team should be writing the CLAUDE.md's, REVIEW.md's, skills, and docs that enable agents to productively work in their codebase with zero additional context from the prompter. This sounds crazy, and at the same time is a natural extension of the stuff engineers have always done: automate, and encode domain knowledge as infrastructure. As the model gets smarter and as the harness matures, this task becomes easier. In the meantime, it is on every team to look for ways to convert their domain knowledge to infra so that Claude can write code better, so that code review catches issues automatically, and so the next person working on your codebase can contribute more easily.">Something I have been thinking about: in the past, the best engineers I knew spent a lot of time automating their work in various ways. Better vim/emacs automations, writing lint rules to catch repeat code issues, building up a suite of e2e tests so they don't need to smoke test the app manually. These kinds of things were the highest leverage activities an engineer could do, because it multiplied their own output, which in turn meant they could build more things.
+
+I think many of these automations have become even more important now. This is true for a number of reasons.
+
+First, infra and DevX automation speeds you up. And if you are running an army of agents, each of those agents will be sped up also. More automation == more output per unit of time.
+
+Second, moving things to code improves efficiency. Your agent could fix an issue every time it sees that issue happen, but that uses tokens and might miss cases. If Claude instead writes a lint rule, CI step, or routine, that class of issue can be fully automated forever. This is really what people are talking about when they talk about loops -- it's about automating entire types of busywork rather than solving them one off. This isn't a new idea at all. Engineers have been doing this for a long time!
+
+Third and most importantly, automation makes it possible for others to contribute to the codebase more easily. Increasingly what I am seeing is engineers are contributing to codebases on day one because Claude can navigate the codebase for them, and that non-engineers are able to contribute to a codebase as effectively as engineers can. What gets in the way of both of these is domain knowledge that lives in peoples' heads rather than in automation -- the stuff you used to have to learn when ramping up. What has changed thanks to agents is the domain knowledge that can be encoded as infrastructure is no longer limited to what is expressible in lint rules and types and tests; it can now capture nearly all domain knowledge, encoded as code comments and skills and CLAUDE.md rules and memories. If I put up a PR for an iOS codebase I don't know and a code reviewer rejects it because it doesn't use the right framework, or if a designer builds a new feature and it gets rejected because it doesn't follow the right architectural patterns, these are failures of automation.
+
+Every team should be writing the CLAUDE.md's, REVIEW.md's, skills, and docs that enable agents to productively work in their codebase with zero additional context from the prompter. This sounds crazy, and at the same time is a natural extension of the stuff engineers have always done: automate, and encode domain knowledge as infrastructure. As the model gets smarter and as the harness matures, this task becomes easier. In the meantime, it is on every team to look for ways to convert their domain knowledge to infra so that Claude can write code better, so that code review catches issues automatically, and so the next person working on your codebase can contribute more easily.</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/bcherny/status/2077460395279692197" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 7,226<div class="heat-track"><div class="heat-fill" style="width:100%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">can</span><span class="kw kw-new">Spark</span><span class="kw kw-trend">and</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/joshwoodward" alt="Josh Woodward">
+          <div class="author-meta">
+            <div class="name">Josh Woodward</div>
+            <div class="id-row"><span class="id-tag id-role">VP</span><span class="id-tag id-company">@Google @GoogleLabs @GeminiApp</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Gemini Spark is headed to more Ultra subscribers around the world* plus 4 new features:
+
+1) Spark can open and edit Google Docs, acting on feedback from last week
+
+2) It can read comments in Google Sheets &amp; Slides, so critical info isn't missed
+
+3) It's &gt;50% faster, you can feel it
+
+4) It can parallel process across multiple sources, so tasks complete faster e2e
+
+Pro members, stay tuned for an access update soon :)
+
+*Full list of countries and changelog: https://t.co/oIjY9qQBoz" data-zh="Gemini Spark is headed to more Ultra subscribers around the world* plus 4 new features:
+
+1) Spark can open and edit Google Docs, acting on feedback from last week
+
+2) It can read comments in Google Sheets &amp; Slides, so critical info isn't missed
+
+3) It's &gt;50% faster, you can feel it
+
+4) It can parallel process across multiple sources, so tasks complete faster e2e
+
+Pro members, stay tuned for an access update soon :)
+
+*Full list of countries and changelog: https://t.co/oIjY9qQBoz">Gemini Spark is headed to more Ultra subscribers around the world* plus 4 new features:
+
+1) Spark can open and edit Google Docs, acting on feedback from last week
+
+2) It can read comments in Google Sheets &amp; Slides, so critical info isn't missed
+
+3) It's &gt;50% faster, you can feel it
+
+4) It can parallel process across multiple sources, so tasks complete faster e2e
+
+Pro members, stay tuned for an access update soon :)
+
+*Full list of countries and changelog: https://t.co/oIjY9qQBoz</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/joshwoodward/status/2077471111240204457" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 494<div class="heat-track"><div class="heat-fill" style="width:7%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">agent</span><span class="kw kw-new">agents</span><span class="kw kw-trend">coding</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/levie" alt="Aaron Levie">
+          <div class="author-meta">
+            <div class="name">Aaron Levie</div>
+            <div class="id-row"><span class="id-tag id-role">ceo @box - your business lives</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Hosted a dinner last night with a group of IT leaders of large enterprises around agent adoption in the enterprise. Some quick notes:
+
+* Change management remains one of the biggest topics for driving workflow transformation. Still most processes need to be upgraded to modern operating models to work with agents, which is a mix of technology, data, and human process change. Lots of emphasis on getting data (structured and unstructured) into a setup that can work with agents properly.
+
+* IT teams are finding increasing success embedding full engineers into the business functions (essentially internal FDE) that go and implement agents into the internal workflows. There’s so much technical work to be done to make agents successful, that they can accelerate months or quarters of failed experiments by having someone technical in the workflow early.
+
+* Consensus that the tech function is becoming more important than ever. It’s clear that the business could only expect automation to affect a minority of the business before (e.g. ERP) but now it can impact all of knowledge work. This means IT is becoming a more central role to the workflows across the company.
+
+* Workflows are cross functional, and getting agents to work cross functionally is a complicated data modeling and permissions issue. Single users don’t have access to this. Which means you need to have agentic systems take on their own roles and have their own privileges, which is non-trivial given agents can’t keep things secure on their own.
+
+* Huge variance in budgets between coding work and the rest of knowledge work. Some companies had a $1,000 a month budget for developers, and others had much higher amounts (like $5,000) that were merely triggers to notify the team vs. block them. Far smaller budgets for non-coding work at the moment.
+
+* More companies are building their own multimodel systems for routing workloads by task to frontier and lower cost models. Lots of energy around open weights models, but still more in experimentation instead of at scale usage (some companies can’t due to perceived Chinese issue). 
+
+* Clear sense that all enterprise software must be headless in the future. Relief that they don’t need to train employees on hundreds of different apps. However, clear frustration with the traditional vendors that don’t play extremely nice (technically or cost wise) with agents in a headless fashion. Huge warning for existing software vendors. 
+
+* Mythos or mythos level-models are finding more and more sophsiticated security risks. The chaining together of vulnerabilities is what’s novel right now, and companies are coming up with long backlogs of what they need to go patch quickly.
+
+Even more discussed, but just a few of the hottest topics." data-zh="Hosted a dinner last night with a group of IT leaders of large enterprises around agent adoption in the enterprise. Some quick notes:
+
+* Change management remains one of the biggest topics for driving workflow transformation. Still most processes need to be upgraded to modern operating models to work with agents, which is a mix of technology, data, and human process change. Lots of emphasis on getting data (structured and unstructured) into a setup that can work with agents properly.
+
+* IT teams are finding increasing success embedding full engineers into the business functions (essentially internal FDE) that go and implement agents into the internal workflows. There’s so much technical work to be done to make agents successful, that they can accelerate months or quarters of failed experiments by having someone technical in the workflow early.
+
+* Consensus that the tech function is becoming more important than ever. It’s clear that the business could only expect automation to affect a minority of the business before (e.g. ERP) but now it can impact all of knowledge work. This means IT is becoming a more central role to the workflows across the company.
+
+* Workflows are cross functional, and getting agents to work cross functionally is a complicated data modeling and permissions issue. Single users don’t have access to this. Which means you need to have agentic systems take on their own roles and have their own privileges, which is non-trivial given agents can’t keep things secure on their own.
+
+* Huge variance in budgets between coding work and the rest of knowledge work. Some companies had a $1,000 a month budget for developers, and others had much higher amounts (like $5,000) that were merely triggers to notify the team vs. block them. Far smaller budgets for non-coding work at the moment.
+
+* More companies are building their own multimodel systems for routing workloads by task to frontier and lower cost models. Lots of energy around open weights models, but still more in experimentation instead of at scale usage (some companies can’t due to perceived Chinese issue). 
+
+* Clear sense that all enterprise software must be headless in the future. Relief that they don’t need to train employees on hundreds of different apps. However, clear frustration with the traditional vendors that don’t play extremely nice (technically or cost wise) with agents in a headless fashion. Huge warning for existing software vendors. 
+
+* Mythos or mythos level-models are finding more and more sophsiticated security risks. The chaining together of vulnerabilities is what’s novel right now, and companies are coming up with long backlogs of what they need to go patch quickly.
+
+Even more discussed, but just a few of the hottest topics.">Hosted a dinner last night with a group of IT leaders of large enterprises around agent adoption in the enterprise. Some quick notes:
+
+* Change management remains one of the biggest topics for driving workflow transformation. Still most processes need to be upgraded to modern operating models to work with agents, which is a mix of technology, data, and human process change. Lots of emphasis on getting data (structured and unstructured) into a setup that can work with agents properly.
+
+* IT teams are finding increasing success embedding full engineers into the business functions (essentially internal FDE) that go and implement agents into the internal workflows. There’s so much technical work to be done to make agents successful, that they can accelerate months or quarters of failed experiments by having someone technical in the workflow early.
+
+* Consensus that the tech function is becoming more important than ever. It’s clear that the business could only expect automation to affect a minority of the business before (e.g. ERP) but now it can impact all of knowledge work. This means IT is becoming a more central role to the workflows across the company.
+
+* Workflows are cross functional, and getting agents to work cross functionally is a complicated data modeling and permissions issue. Single users don’t have access to this. Which means you need to have agentic systems take on their own roles and have their own privileges, which is non-trivial given agents can’t keep things secure on their own.
+
+* Huge variance in budgets between coding work and the rest of knowledge work. Some companies had a $1,000 a month budget for developers, and others had much higher amounts (like $5,000) that were merely triggers to notify the team vs. block them. Far smaller budgets for non-coding work at the moment.
+
+* More companies are building their own multimodel systems for routing workloads by task to frontier and lower cost models. Lots of energy around open weights models, but still more in experimentation instead of at scale usage (some companies can’t due to perceived Chinese issue). 
+
+* Clear sense that all enterprise software must be headless in the future. Relief that they don’t need to train employees on hundreds of different apps. However, clear frustration with the traditional vendors that don’t play extremely nice (technically or cost wise) with agents in a headless fashion. Huge warning for existing software vendors. 
+
+* Mythos or mythos level-models are finding more and more sophsiticated security risks. The chaining together of vulnerabilities is what’s novel right now, and companies are coming up with long backlogs of what they need to go patch quickly.
+
+Even more discussed, but just a few of the hottest topics.</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/levie/status/2077526010753581156" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 488<div class="heat-track"><div class="heat-fill" style="width:7%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">prompts</span><span class="kw kw-new">multimodal</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/joshwoodward" alt="Josh Woodward">
+          <div class="author-meta">
+            <div class="name">Josh Woodward</div>
+            <div class="id-row"><span class="id-tag id-role">VP</span><span class="id-tag id-company">@Google @GoogleLabs @GeminiApp</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="We just released our first-ever Gemini Southeast Asia Report (below), 3 insights:
+
+1/ Active users more than doubled in the last year
+2/ 70% of prompts are submitted in native languages
+3/ 40% of prompts only use voice, image, or video
+
+Gemini's local language + multimodal capabilities + mobile apps are driving growth, and we have more coming soon for the region!
+
+🇮🇩🇲🇾🇵🇭🇸🇬🇹🇭🇻🇳" data-zh="We just released our first-ever Gemini Southeast Asia Report (below), 3 insights:
+
+1/ Active users more than doubled in the last year
+2/ 70% of prompts are submitted in native languages
+3/ 40% of prompts only use voice, image, or video
+
+Gemini's local language + multimodal capabilities + mobile apps are driving growth, and we have more coming soon for the region!
+
+🇮🇩🇲🇾🇵🇭🇸🇬🇹🇭🇻🇳">We just released our first-ever Gemini Southeast Asia Report (below), 3 insights:
+
+1/ Active users more than doubled in the last year
+2/ 70% of prompts are submitted in native languages
+3/ 40% of prompts only use voice, image, or video
+
+Gemini's local language + multimodal capabilities + mobile apps are driving growth, and we have more coming soon for the region!
+
+🇮🇩🇲🇾🇵🇭🇸🇬🇹🇭🇻🇳</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/joshwoodward/status/2077411104775406045" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 472<div class="heat-track"><div class="heat-fill" style="width:7%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Fantastic</span><span class="kw kw-new">see</span><span class="kw kw-trend">more</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/levie" alt="Aaron Levie">
+          <div class="author-meta">
+            <div class="name">Aaron Levie</div>
+            <div class="id-row"><span class="id-tag id-role">ceo @box - your business lives</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Fantastic to see more open weights innovation happening right now, especially coming from a US Lab. 
+
+The future of AI is going to be a mix of frontier intelligence that you can use as an orchestrator combined with either lower cost or tuned models for your workhorse tasks. https://t.co/pvQ6HgRkO1 https://t.co/zvY9XIgSPE" data-zh="Fantastic to see more open weights innovation happening right now, especially coming from a US Lab. 
+
+The future of AI is going to be a mix of frontier intelligence that you can use as an orchestrator combined with either lower cost or tuned models for your workhorse tasks. https://t.co/pvQ6HgRkO1 https://t.co/zvY9XIgSPE">Fantastic to see more open weights innovation happening right now, especially coming from a US Lab. 
+
+The future of AI is going to be a mix of frontier intelligence that you can use as an orchestrator combined with either lower cost or tuned models for your workhorse tasks. https://t.co/pvQ6HgRkO1 https://t.co/zvY9XIgSPE</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/levie/status/2077471148699439152" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 223<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">agent</span><span class="kw kw-new">API</span><span class="kw kw-trend">MCP</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/danshipper" alt="Dan Shipper">
+          <div class="author-meta">
+            <div class="name">Dan Shipper</div>
+            <div class="id-row"><span class="id-tag id-role">ceo @every</span><span class="id-tag id-company">the only subscription you need</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Even when things are going great, running a $1.5 billion AI startup is a knife fight.
+
+@MeetGranola was one of the first AI apps of this generation to achieve near-ubiquitous adoption. But meeting notes are not the company’s be-all and end-all.
+
+The real battle is over owning the interface that everyone uses to get their work done in an AI-native world.
+I had Chris Pedregal (@cjpedregal), cofounder and CEO of Granola, back on @every’s AI &amp; I to talk about the current state of the application layer, AI’s frontier, and the future of work.
+
+We get into:
+- Why meeting notes clones don’t matter. Three big companies cloned Granola’s core feature. To him, meeting notes were never the real prize. “Easy come, easy go” is his view of anyone’s lead, including his own.
+- How he thinks about building proactive features in AI. Granola pre-generates millions of pre-meeting briefs, which include context on the nature of the meeting and people participating, that most people never open. But when they do, they have a magical experience.
+- Why Granola is betting on “bring your own agent.” Chris says the API and MCP will get “a lot better” over the next few months, and we talk about their agent-native strategy and why they’ve pushed the product that way.
+
+This is a must-watch for anyone building at the application layer.
+
+Watch the episode!
+
+Timestamps
+Introduction: 00:00:59
+Why running a company is a knife fight even when it’s working: 00:01:57
+Granola’s counterintuitive view on competition: 00:04:33
+Dan’s “pirate and architect” model for early-stage product teams: 00:10:44
+Granola’s “shaping” and “validation” phases for building features: 00:13:09
+Why Dan lives almost entirely inside Codex: 00:18:17
+The case for “Codex-native apps”: 00:24:40
+Granola’s “handrail” philosophy: 00:35:37
+Why Granola is going all in on winning meeting-adjacent context: 00:38:12
+What a transcript alone can never capture: 00:44:19" data-zh="Even when things are going great, running a $1.5 billion AI startup is a knife fight.
+
+@MeetGranola was one of the first AI apps of this generation to achieve near-ubiquitous adoption. But meeting notes are not the company’s be-all and end-all.
+
+The real battle is over owning the interface that everyone uses to get their work done in an AI-native world.
+I had Chris Pedregal (@cjpedregal), cofounder and CEO of Granola, back on @every’s AI &amp; I to talk about the current state of the application layer, AI’s frontier, and the future of work.
+
+We get into:
+- Why meeting notes clones don’t matter. Three big companies cloned Granola’s core feature. To him, meeting notes were never the real prize. “Easy come, easy go” is his view of anyone’s lead, including his own.
+- How he thinks about building proactive features in AI. Granola pre-generates millions of pre-meeting briefs, which include context on the nature of the meeting and people participating, that most people never open. But when they do, they have a magical experience.
+- Why Granola is betting on “bring your own agent.” Chris says the API and MCP will get “a lot better” over the next few months, and we talk about their agent-native strategy and why they’ve pushed the product that way.
+
+This is a must-watch for anyone building at the application layer.
+
+Watch the episode!
+
+Timestamps
+Introduction: 00:00:59
+Why running a company is a knife fight even when it’s working: 00:01:57
+Granola’s counterintuitive view on competition: 00:04:33
+Dan’s “pirate and architect” model for early-stage product teams: 00:10:44
+Granola’s “shaping” and “validation” phases for building features: 00:13:09
+Why Dan lives almost entirely inside Codex: 00:18:17
+The case for “Codex-native apps”: 00:24:40
+Granola’s “handrail” philosophy: 00:35:37
+Why Granola is going all in on winning meeting-adjacent context: 00:38:12
+What a transcript alone can never capture: 00:44:19">Even when things are going great, running a $1.5 billion AI startup is a knife fight.
+
+@MeetGranola was one of the first AI apps of this generation to achieve near-ubiquitous adoption. But meeting notes are not the company’s be-all and end-all.
+
+The real battle is over owning the interface that everyone uses to get their work done in an AI-native world.
+I had Chris Pedregal (@cjpedregal), cofounder and CEO of Granola, back on @every’s AI &amp; I to talk about the current state of the application layer, AI’s frontier, and the future of work.
+
+We get into:
+- Why meeting notes clones don’t matter. Three big companies cloned Granola’s core feature. To him, meeting notes were never the real prize. “Easy come, easy go” is his view of anyone’s lead, including his own.
+- How he thinks about building proactive features in AI. Granola pre-generates millions of pre-meeting briefs, which include context on the nature of the meeting and people participating, that most people never open. But when they do, they have a magical experience.
+- Why Granola is betting on “bring your own agent.” Chris says the API and MCP will get “a lot better” over the next few months, and we talk about their agent-native strategy and why they’ve pushed the product that way.
+
+This is a must-watch for anyone building at the application layer.
+
+Watch the episode!
+
+Timestamps
+Introduction: 00:00:59
+Why running a company is a knife fight even when it’s working: 00:01:57
+Granola’s counterintuitive view on competition: 00:04:33
+Dan’s “pirate and architect” model for early-stage product teams: 00:10:44
+Granola’s “shaping” and “validation” phases for building features: 00:13:09
+Why Dan lives almost entirely inside Codex: 00:18:17
+The case for “Codex-native apps”: 00:24:40
+Granola’s “handrail” philosophy: 00:35:37
+Why Granola is going all in on winning meeting-adjacent context: 00:38:12
+What a transcript alone can never capture: 00:44:19</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/danshipper/status/2077410279474770229" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 66<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div></div>
+    </div><div class="cat-group">
+      <div class="cat-group-header">
+        <div class="cat-group-icon" style="background:linear-gradient(135deg,#10b981,#059669);">E</div>
+        <h3>平台与生态动态</h3>
+        <span class="cat-count">13 条动态</span>
+      </div>
+      <div class="detail-grid"><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">limit</span><span class="kw kw-new">you</span><span class="kw kw-trend">the</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/thsottiaux" alt="Thibault Sottiaux">
+          <div class="author-meta">
+            <div class="name">Thibault Sottiaux</div>
+            <div class="id-row"><span class="id-tag id-role">Codex &amp; ChatGPT @OpenAI</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="We've had no 5h limit in Codex plus and pro for a few days. Do you think it is better or are you finding it difficult to manage the usage included in the weekly limit effectively?
+
+If we were to make this different, what should it look like in an ideal world?" data-zh="We've had no 5h limit in Codex plus and pro for a few days. Do you think it is better or are you finding it difficult to manage the usage included in the weekly limit effectively?
+
+If we were to make this different, what should it look like in an ideal world?">We've had no 5h limit in Codex plus and pro for a few days. Do you think it is better or are you finding it difficult to manage the usage included in the weekly limit effectively?
+
+If we were to make this different, what should it look like in an ideal world?</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/thsottiaux/status/2077632589498913087" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 3,287<div class="heat-track"><div class="heat-fill" style="width:45%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">prompts</span><span class="kw kw-new">context</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/trq212" alt="Thariq">
+          <div class="author-meta">
+            <div class="name">Thariq</div>
+            <div class="id-row"><span class="id-tag id-role">Claude Code @anthropicai.   pr</span><span class="id-tag id-company">@southpkcommons</span><span class="id-tag id-product">@medialab</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin skills" data-zh="ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin skills">ideal prompting technique is:
+- thin prompts
+- thick artifacts + context
+- thin skills</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/trq212/status/2077539537992229076" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 2,754<div class="heat-track"><div class="heat-fill" style="width:38%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">GPT</span><span class="kw kw-new">model</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/thsottiaux" alt="Thibault Sottiaux">
+          <div class="author-meta">
+            <div class="name">Thibault Sottiaux</div>
+            <div class="id-row"><span class="id-tag id-role">Codex &amp; ChatGPT @OpenAI</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. 
+
+What we have  found is that this most commonly occurs when:
+- Full access mode is enabled and codex is run without sandboxing protections, including without auto review being enabled
+- The model attempts  to override the $HOME env var to define a temporary directory.
+- The model makes an honest mistake and mistakenly deletes $HOME instead.
+
+This is of course not how we want the system to behave, even when a user operates the model in full-access mode without the safeguards of our sandbox or without using auto review which checks for these kinds of high risk actions and rejects them. 
+
+We are taking steps to mitigate this risk including by updating the developer message, guiding more users towards safer permission modes, and adding additional harness safeguards. Even though this happens extremely rarely, we’ll share a detailed post-mortem in the coming days that goes into more details and what we are doing to minimize risks further." data-zh="On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. 
+
+What we have  found is that this most commonly occurs when:
+- Full access mode is enabled and codex is run without sandboxing protections, including without auto review being enabled
+- The model attempts  to override the $HOME env var to define a temporary directory.
+- The model makes an honest mistake and mistakenly deletes $HOME instead.
+
+This is of course not how we want the system to behave, even when a user operates the model in full-access mode without the safeguards of our sandbox or without using auto review which checks for these kinds of high risk actions and rejects them. 
+
+We are taking steps to mitigate this risk including by updating the developer message, guiding more users towards safer permission modes, and adding additional harness safeguards. Even though this happens extremely rarely, we’ll share a detailed post-mortem in the coming days that goes into more details and what we are doing to minimize risks further.">On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. 
+
+What we have  found is that this most commonly occurs when:
+- Full access mode is enabled and codex is run without sandboxing protections, including without auto review being enabled
+- The model attempts  to override the $HOME env var to define a temporary directory.
+- The model makes an honest mistake and mistakenly deletes $HOME instead.
+
+This is of course not how we want the system to behave, even when a user operates the model in full-access mode without the safeguards of our sandbox or without using auto review which checks for these kinds of high risk actions and rejects them. 
+
+We are taking steps to mitigate this risk including by updating the developer message, guiding more users towards safer permission modes, and adding additional harness safeguards. Even though this happens extremely rarely, we’ll share a detailed post-mortem in the coming days that goes into more details and what we are doing to minimize risks further.</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/thsottiaux/status/2077630111499882637" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 2,225<div class="heat-track"><div class="heat-fill" style="width:31%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">software</span><span class="kw kw-new">engineering</span><span class="kw kw-trend">the</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/trq212" alt="Thariq">
+          <div class="author-meta">
+            <div class="name">Thariq</div>
+            <div class="id-row"><span class="id-tag id-role">Claude Code @anthropicai.   pr</span><span class="id-tag id-company">@southpkcommons</span><span class="id-tag id-product">@medialab</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="software engineering is the profession of automation https://t.co/5OQXE5VBRH" data-zh="software engineering is the profession of automation https://t.co/5OQXE5VBRH">software engineering is the profession of automation https://t.co/5OQXE5VBRH</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/trq212/status/2077490092290253259" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 1,619<div class="heat-track"><div class="heat-fill" style="width:22%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Now</span><span class="kw kw-new">that</span><span class="kw kw-trend">merged</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/thsottiaux" alt="Thibault Sottiaux">
+          <div class="author-meta">
+            <div class="name">Thibault Sottiaux</div>
+            <div class="id-row"><span class="id-tag id-role">Codex &amp; ChatGPT @OpenAI</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Now that we merged ChatGPT and Codex, what should we merge next? What's the double or nothing move." data-zh="Now that we merged ChatGPT and Codex, what should we merge next? What's the double or nothing move.">Now that we merged ChatGPT and Codex, what should we merge next? What's the double or nothing move.</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/thsottiaux/status/2077627035418239230" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 1,594<div class="heat-track"><div class="heat-fill" style="width:22%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Easy</span><span class="kw kw-new">money</span><span class="kw kw-trend">(British</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/rauchg" alt="Guillermo Rauch">
+          <div class="author-meta">
+            <div class="name">Guillermo Rauch</div>
+            <div class="id-row"><span class="id-tag id-role">@vercel CEO</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Easy money (British pounds)" data-zh="Easy money (British pounds)">Easy money (British pounds)</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/rauchg/status/2077499486130389189" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 535<div class="heat-track"><div class="heat-fill" style="width:7%"></div></div></div>
+        </div>
+      </div></div>
+    </div><div class="cat-group">
+      <div class="cat-group-header">
+        <div class="cat-group-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);">S</div>
+        <h3>行业信号与洞察</h3>
+        <span class="cat-count">11 条动态</span>
+      </div>
+      <div class="detail-grid"><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">amazing</span><span class="kw kw-new">that</span><span class="kw kw-trend">some</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/sama" alt="Sam Altman">
+          <div class="author-meta">
+            <div class="name">Sam Altman</div>
+            <div class="id-row"><span class="id-tag id-role">AI is cool i guess</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z" data-zh="amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z">amazing to me that some people want the silent version
+
+https://t.co/jbdznnBx9Z</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/sama/status/2077489177374208000" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 2,542<div class="heat-track"><div class="heat-fill" style="width:35%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">you</span><span class="kw kw-new">can</span><span class="kw kw-trend">just</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/swyx" alt="Swyx">
+          <div class="author-meta">
+            <div class="name">Swyx</div>
+            <div class="id-row"><span class="id-tag id-role">achieve ambition with intentio</span><span class="id-tag id-company">intensity</span><span class="id-tag id-product">integrity &amp; insanity.</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="you can just tweet things into existence https://t.co/4TnqEDoQsg" data-zh="you can just tweet things into existence https://t.co/4TnqEDoQsg">you can just tweet things into existence https://t.co/4TnqEDoQsg</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/swyx/status/2077563850824790200" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 140<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Argentina’s</span><span class="kw kw-new">World</span><span class="kw kw-trend">Cup</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/mattturck" alt="Matt Turck">
+          <div class="author-meta">
+            <div class="name">Matt Turck</div>
+            <div class="id-row"><span class="id-tag id-role">VC at @FirstMarkCap.  Host: MA</span><span class="id-tag id-company">Author: MAD Landscape.</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Argentina’s World Cup recipe: 
+
+1) trail 10-15 minutes before the end
+2) bring on Lautaro Martinez
+3) win
+4) repeat" data-zh="Argentina’s World Cup recipe: 
+
+1) trail 10-15 minutes before the end
+2) bring on Lautaro Martinez
+3) win
+4) repeat">Argentina’s World Cup recipe: 
+
+1) trail 10-15 minutes before the end
+2) bring on Lautaro Martinez
+3) win
+4) repeat</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/mattturck/status/2077499992705470802" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 111<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Life</span><span class="kw kw-new">good</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/petergyang" alt="Peter Yang">
+          <div class="author-meta">
+            <div class="name">Peter Yang</div>
+            <div class="id-row"><span class="id-tag id-role">Practical AI tutorials and int</span><span class="id-tag id-company">Get my best AI skills and guid</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Life's good https://t.co/DqZssEUaed https://t.co/LqU79Ygmr2" data-zh="Life's good https://t.co/DqZssEUaed https://t.co/LqU79Ygmr2">Life's good https://t.co/DqZssEUaed https://t.co/LqU79Ygmr2</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/petergyang/status/2077610395272138913" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 104<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">for</span><span class="kw kw-new">immigration</span><span class="kw kw-trend">will</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/nikunj" alt="Nikunj Kothari">
+          <div class="author-meta">
+            <div class="name">Nikunj Kothari</div>
+            <div class="id-row"><span class="id-tag id-role">partner @fpvventures - investi</span><span class="id-tag id-company">@opendoor</span><span class="id-tag id-product">@atlassian &amp; others. love @shi</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Forgive me (travel) Lord for I have sinned..
+
+After spending 3 hours in the immigration line in Paris, 
+
+I will never complain about SFO and US immigration ever again. 
+
+Also, will be taking a hiatus from tech Twitter for a bit to spend some time touching grass ✌️" data-zh="Forgive me (travel) Lord for I have sinned..
+
+After spending 3 hours in the immigration line in Paris, 
+
+I will never complain about SFO and US immigration ever again. 
+
+Also, will be taking a hiatus from tech Twitter for a bit to spend some time touching grass ✌️">Forgive me (travel) Lord for I have sinned..
+
+After spending 3 hours in the immigration line in Paris, 
+
+I will never complain about SFO and US immigration ever again. 
+
+Also, will be taking a hiatus from tech Twitter for a bit to spend some time touching grass ✌️</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/nikunj/status/2077354857929887997" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 93<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">that</span><span class="kw kw-new">The</span><span class="kw kw-trend">thing</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/adityaag" alt="Aditya Agarwal">
+          <div class="author-meta">
+            <div class="name">Aditya Agarwal</div>
+            <div class="id-row"><span class="id-tag id-role">General Partner @SouthPkCommon</span><span class="id-tag id-company">Co-Founder @Bevel_Health</span><span class="id-tag id-product">Ex: Early Eng @facebook</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="The thing that is amazing about innovation...is that you can just do things.
+
+Proud to be Day -1 supporters. https://t.co/20MaPAkH5L" data-zh="The thing that is amazing about innovation...is that you can just do things.
+
+Proud to be Day -1 supporters. https://t.co/20MaPAkH5L">The thing that is amazing about innovation...is that you can just do things.
+
+Proud to be Day -1 supporters. https://t.co/20MaPAkH5L</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/adityaag/status/2077492237248893312" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 75<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div></div>
+    </div>
+        <div class="footer">
+          Powered by <a href="https://github.com/zarazhangrui/follow-builders" target="_blank">Follow Builders</a> | 关注构建者，而非网红
+        </div>
+      </div>
+    </div>
+    <div id="history-view" style="display:none"></div>
+    <div id="favorites-view" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+const TODAY_KEY = document.querySelector('title').textContent.match(/[\d.]+/)?.[0] || new Date().toISOString().slice(0,10).replace(/-/g,'.');
+let currentView = 'today';
+
+function toggleMobileMenu() {
+  document.getElementById('left-sidebar').classList.toggle('mobile-open');
+  document.getElementById('mobile-overlay').classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('left-sidebar').classList.remove('mobile-open');
+  document.getElementById('mobile-overlay').classList.remove('open');
+}
+
+function showToday() {
+  currentView = 'today';
+  document.getElementById('today-view').style.display = '';
+  document.getElementById('history-view').style.display = 'none';
+  document.getElementById('favorites-view').style.display = 'none';
+  highlightDateItem(TODAY_KEY);
+  document.getElementById('fav-nav-btn').classList.remove('active');
+  closeMobileMenu();
+}
+
+function showHistoryDay(dateKey) {
+  if (dateKey === TODAY_KEY) { showToday(); return; }
+  currentView = 'history';
+  const history = JSON.parse(localStorage.getItem('digest-history') || '{}');
+  const day = history[dateKey]; if (!day) return;
+  document.getElementById('today-view').style.display = 'none';
+  document.getElementById('favorites-view').style.display = 'none';
+  const view = document.getElementById('history-view');
+  view.style.display = '';
+  highlightDateItem(dateKey);
+  document.getElementById('fav-nav-btn').classList.remove('active');
+
+  const catLabels = { product: '产品应用', tech: '技术', user: '用户与市场' };
+  const catCls = { product: '#f97316', tech: '#6366f1', user: '#059669' };
+
+  let html = '<div class="history-main-view">';
+  html += '<div class="history-header"><h2>&#128218; 历史回顾</h2><span class="history-date-badge">' + dateKey + '</span></div>';
+
+  if (day.insights && day.insights.length) {
+    html += '<div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:12px;">&#128161; 核心启示</div>';
+    html += '<div class="history-insights-grid">';
+    day.insights.forEach(function(ins) {
+      var cat = catLabels[ins.category] || '启示';
+      var color = catCls[ins.category] || '#6366f1';
+      html += '<div class="history-insight-card">' +
+        '<div class="hi-cat" style="color:' + color + ';">' + cat + '</div>' +
+        '<div class="hi-title">' + (ins.title || '') + '</div>' +
+        '<div class="hi-desc">' + (ins.content || '') + '</div>' +
+        (ins.link ? '<a href="' + ins.link + '" target="_blank" style="font-size:11px;margin-top:6px;display:inline-block;">' + (ins.authorName || '') + ' &rarr;</a>' : '') +
+      '</div>';
+    });
+    html += '</div>';
+  }
+
+  if (day.podcast) {
+    html += '<div style="font-size:13px;font-weight:700;color:var(--text2);margin:24px 0 12px;">&#127911; 播客精选</div>';
+    html += buildPodcastCardHTML(day.podcast, false);
+  }
+
+  if (day.cards && day.cards.length) {
+    html += '<div style="font-size:13px;font-weight:700;color:var(--text2);margin:24px 0 12px;">&#128196; 信息源详情</div>';
+    html += '<div class="history-detail-grid">';
+    day.cards.forEach(function(c) { html += buildCardHTML(c); });
+    html += '</div>';
+  }
+
+  html += '</div>';
+  view.innerHTML = html;
+  closeMobileMenu();
+  window.scrollTo(0, 0);
+}
+
+function showFavorites() {
+  currentView = 'favorites';
+  document.getElementById('today-view').style.display = 'none';
+  document.getElementById('history-view').style.display = 'none';
+  document.getElementById('favorites-view').style.display = '';
+  document.querySelectorAll('.date-item').forEach(function(d) { d.classList.remove('active'); });
+  document.getElementById('fav-nav-btn').classList.add('active');
+  renderFavorites();
+  closeMobileMenu();
+  window.scrollTo(0, 0);
+}
+
+function highlightDateItem(dateKey) {
+  document.querySelectorAll('.date-item').forEach(function(d) {
+    d.classList.toggle('active', d.dataset.date === dateKey);
+  });
+}
+
+function extractPodcastData() {
+  var banner = document.getElementById('podcast-banner');
+  if (!banner) return null;
+  var title = banner.querySelector('h3')?.textContent || '';
+  var showName = banner.querySelector('.podcast-badge')?.textContent?.trim() || 'Podcast';
+  var url = banner.querySelector('.tagline a')?.href || '';
+  var points = [];
+  banner.querySelectorAll('li').forEach(function(li) { points.push(li.textContent.replace('💡','').trim()); });
+  return { type: 'podcast', title: title, showName: showName, url: url, points: points, id: 'podcast-' + btoa(encodeURIComponent(title.slice(0, 50))) };
+}
+
+function extractInsightData(card) {
+  var title = card.querySelector('.title')?.textContent || '';
+  var desc = card.querySelector('.desc')?.textContent || '';
+  var chipEl = card.querySelector('.chip');
+  var link = chipEl?.href || '';
+  var authorName = chipEl?.textContent?.replace(/\s*→\s*$/, '').trim() || '';
+  var col = card.closest('.insight-col');
+  var colHeader = col?.querySelector('.insight-col-header');
+  var category = 'insight';
+  if (colHeader?.classList.contains('col-product')) category = 'product';
+  else if (colHeader?.classList.contains('col-tech')) category = 'tech';
+  else if (colHeader?.classList.contains('col-user')) category = 'user';
+  return { type: 'insight', category: category, title: title, content: desc, link: link, authorName: authorName, avatar: '', kws: [], idTags: [], heat: '', id: btoa(encodeURIComponent(title.slice(0, 50) + authorName)) };
+}
+
+function extractCardData(card) {
+  var kws = [];
+  card.querySelectorAll('.kw').forEach(function(k) { kws.push({ text: k.textContent, cls: k.className }); });
+  var avatar = card.querySelector('.real-avatar');
+  var name = card.querySelector('.name');
+  var idTags = [];
+  card.querySelectorAll('.id-tag').forEach(function(t) { idTags.push({ text: t.textContent, cls: t.className }); });
+  var content = card.querySelector('.content')?.textContent || '';
+  var link = card.querySelector('.link-btn')?.href || '';
+  var heat = card.querySelector('.heat-bar')?.innerHTML || '';
+  return { type: 'detail', kws: kws, content: content, link: link, heat: heat, avatar: avatar?.src || '', authorName: name?.textContent || '', idTags: idTags, id: btoa(encodeURIComponent(content.slice(0, 50) + (name?.textContent || ''))) };
+}
+
+(function saveToday() {
+  var history = JSON.parse(localStorage.getItem('digest-history') || '{}');
+  if (!history[TODAY_KEY]) {
+    var insights = [];
+    document.querySelectorAll('.insight-card[data-bookmarkable]').forEach(function(card) { insights.push(extractInsightData(card)); });
+    var cards = [];
+    document.querySelectorAll('.detail-card').forEach(function(card) { cards.push(extractCardData(card)); });
+    var statPills = [];
+    document.querySelectorAll('.stat-pill').forEach(function(s) { statPills.push(s.textContent); });
+    var podcast = extractPodcastData();
+    history[TODAY_KEY] = { stats: statPills, insights: insights, cards: cards, podcast: podcast, savedAt: Date.now() };
+    localStorage.setItem('digest-history', JSON.stringify(history));
+  }
+  updateBadges();
+  populateDateList();
+})();
+
+(function addInsightBookmarks() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  document.querySelectorAll('.insight-card[data-bookmarkable]').forEach(function(card) {
+    var bottom = card.querySelector('.insight-bottom');
+    if (!bottom) return;
+    var data = extractInsightData(card);
+    var btn = document.createElement('button');
+    btn.className = 'insight-bm-btn'; btn.title = '收藏';
+    if (favs[data.id]) { btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+    else { btn.innerHTML = '&#9734;'; }
+    btn.onclick = function(e) { e.stopPropagation(); toggleBookmark(data, btn); };
+    bottom.appendChild(btn);
+  });
+})();
+
+(function addBookmarkBtns() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  document.querySelectorAll('.detail-card').forEach(function(card) {
+    var eng = card.querySelector('.engagement');
+    if (!eng) return;
+    var data = extractCardData(card);
+    var btn = document.createElement('button');
+    btn.className = 'bm-btn'; btn.title = '收藏';
+    if (favs[data.id]) { btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+    else { btn.innerHTML = '&#9734;'; }
+    btn.onclick = function() { toggleBookmark(data, btn); };
+    eng.appendChild(btn);
+  });
+})();
+
+(function addPodcastBookmark() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  var btn = document.getElementById('podcast-bm-btn');
+  if (!btn) return;
+  var data = extractPodcastData();
+  if (!data) return;
+  if (favs[data.id]) { btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+  btn.onclick = function() {
+    var f = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+    if (f[data.id]) { delete f[data.id]; btn.classList.remove('bookmarked'); btn.innerHTML = '&#9734;'; }
+    else { f[data.id] = Object.assign({}, data, { status: 'unread', date: TODAY_KEY, addedAt: Date.now() }); btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+    localStorage.setItem('digest-favorites', JSON.stringify(f));
+    updateBadges();
+  };
+})();
+
+function toggleBookmark(data, btn) {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  if (favs[data.id]) { delete favs[data.id]; btn.classList.remove('bookmarked'); btn.innerHTML = '&#9734;'; }
+  else { favs[data.id] = { type: data.type, category: data.category, title: data.title, content: data.content, link: data.link, authorName: data.authorName, avatar: data.avatar, kws: data.kws, idTags: data.idTags, heat: data.heat, status: 'unread', date: TODAY_KEY, addedAt: Date.now() }; btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+  localStorage.setItem('digest-favorites', JSON.stringify(favs));
+  updateBadges();
+}
+
+function populateDateList() {
+  var history = JSON.parse(localStorage.getItem('digest-history') || '{}');
+  var container = document.getElementById('date-list');
+  var dates = Object.keys(history).sort().reverse();
+  if (!dates.length) { container.innerHTML = '<div style="padding:8px 20px;font-size:12px;color:#64748b;">暂无记录</div>'; return; }
+  container.innerHTML = dates.map(function(d) {
+    var isCurrent = d === TODAY_KEY;
+    var parts = d.split('.');
+    var label = parts[1] + '月' + parseInt(parts[2]) + '日';
+    return '<button class="date-item ' + (isCurrent ? 'active' : '') + '" data-date="' + d + '" onclick="showHistoryDay(\'' + d + '\')">' +
+      '<span class="date-label">' + label + '</span>' +
+      '<span class="date-tag ' + (isCurrent ? 'date-tag-today' : 'date-tag-past') + '">' + (isCurrent ? '今日' : '历史') + '</span>' +
+    '</button>';
+  }).join('');
+}
+
+function buildPodcastCardHTML(p, showFavControls) {
+  var id = p.id || ('podcast-' + btoa(encodeURIComponent((p.title || '').slice(0, 50))));
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  var isFaved = !!favs[id];
+  var html = '<div class="fav-card" style="background:linear-gradient(135deg,rgba(99,102,241,0.06),rgba(139,92,246,0.06));margin-bottom:16px;">';
+  if (showFavControls) {
+    html += '<div class="fav-top-row">' +
+      '<div class="fav-date-label">播客 | ' + (p.date || '') + '</div>' +
+      '<select class="fav-status-select" onchange="changeFavStatus(\'' + id + '\',this.value)">' +
+        '<option value="unread"' + (favs[id]?.status === 'unread' ? ' selected' : '') + '>待阅读</option>' +
+        '<option value="deep"' + (favs[id]?.status === 'deep' ? ' selected' : '') + '>深刻阅读</option>' +
+        '<option value="think"' + (favs[id]?.status === 'think' ? ' selected' : '') + '>待思考</option>' +
+      '</select>' +
+      '<button class="fav-remove-btn" onclick="removeFav(\'' + id + '\')" title="取消收藏">&times;</button>' +
+    '</div>';
+  }
+  html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">' +
+    '<span style="font-size:11px;font-weight:700;background:rgba(99,102,241,0.15);color:#6366f1;padding:2px 8px;border-radius:8px;">&#127911; ' + (p.showName || 'Podcast') + '</span>' +
+  '</div>';
+  html += '<div style="font-size:14px;font-weight:700;margin-bottom:8px;color:var(--text);">' + (p.title || '') + '</div>';
+  if (p.points && p.points.length) {
+    html += '<ul style="padding-left:16px;font-size:12px;color:var(--text2);line-height:1.9;margin-bottom:8px;">' +
+      p.points.slice(0, 5).map(function(pt) { return '<li>' + pt + '</li>'; }).join('') +
+    '</ul>';
+  }
+  html += (p.url ? '<a class="link-btn" href="' + p.url + '" target="_blank" style="font-size:11px;display:inline-flex;">观看完整内容 &rarr;</a>' : '');
+  html += '</div>';
+  return html;
+}
+
+function buildCardHTML(c) {
+  var kwsHTML = (c.kws || []).map(function(k) { return '<span class="' + k.cls + '">' + k.text + '</span>'; }).join('');
+  return '<div class="fav-card">' +
+    (kwsHTML ? '<div class="kw-row" style="margin-bottom:6px;">' + kwsHTML + '</div>' : '') +
+    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">' +
+      (c.avatar ? '<img src="' + c.avatar + '" alt="" style="width:24px;height:24px;border-radius:50%;">' : '') +
+      '<span style="font-size:12px;font-weight:600;">' + (c.authorName || '') + '</span>' +
+    '</div>' +
+    '<div style="font-size:12px;color:var(--text2);line-height:1.6;">' + (c.content || '').slice(0, 200) + ((c.content || '').length > 200 ? '...' : '') + '</div>' +
+    (c.link ? '<a class="link-btn" href="' + c.link + '" target="_blank" style="font-size:11px;margin-top:6px;display:inline-flex;">原文 &rarr;</a>' : '') +
+  '</div>';
+}
+
+var currentFilter = 'all';
+function filterFav(status, btn) {
+  currentFilter = status;
+  document.querySelectorAll('.fav-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderFavorites();
+}
+
+function renderFavorites() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  var view = document.getElementById('favorites-view');
+  var items = Object.entries(favs).sort(function(a, b) { return b[1].addedAt - a[1].addedAt; });
+  if (currentFilter !== 'all') items = items.filter(function(e) { return e[1].status === currentFilter; });
+  var catLabels = { product: '产品启示', tech: '技术启示', user: '用户启示' };
+
+  var html = '<div class="fav-main-view">';
+  html += '<div class="fav-header"><h2>&#11088; 我的收藏</h2></div>';
+  html += '<div class="fav-filters">' +
+    '<button class="fav-filter-btn ' + (currentFilter === 'all' ? 'active' : '') + '" onclick="filterFav(\'all\',this)">全部 (' + Object.keys(favs).length + ')</button>' +
+    '<button class="fav-filter-btn ' + (currentFilter === 'unread' ? 'active' : '') + '" onclick="filterFav(\'unread\',this)">待阅读</button>' +
+    '<button class="fav-filter-btn ' + (currentFilter === 'deep' ? 'active' : '') + '" onclick="filterFav(\'deep\',this)">深刻阅读</button>' +
+    '<button class="fav-filter-btn ' + (currentFilter === 'think' ? 'active' : '') + '" onclick="filterFav(\'think\',this)">待思考</button>' +
+  '</div>';
+
+  if (!items.length) {
+    html += '<div class="fav-empty-msg">' + (currentFilter === 'all' ? '还没有收藏内容。点击卡片上的 &#9734; 按钮收藏。' : '该分类下暂无内容。') + '</div>';
+  } else {
+    html += '<div class="fav-grid">';
+    items.forEach(function(entry) {
+      var id = entry[0], f = entry[1];
+      if (f.type === 'podcast') {
+        html += buildPodcastCardHTML(f, true);
+      } else {
+        var isInsight = f.type === 'insight';
+        var catLabel = isInsight && f.category ? (catLabels[f.category] || '启示') : '';
+        html += '<div class="fav-card">' +
+          '<div class="fav-top-row">' +
+            '<div class="fav-date-label">' + (catLabel ? catLabel + ' | ' : '') + (f.date || '') + '</div>' +
+            '<select class="fav-status-select" onchange="changeFavStatus(\'' + id + '\',this.value)">' +
+              '<option value="unread"' + (f.status === 'unread' ? ' selected' : '') + '>待阅读</option>' +
+              '<option value="deep"' + (f.status === 'deep' ? ' selected' : '') + '>深刻阅读</option>' +
+              '<option value="think"' + (f.status === 'think' ? ' selected' : '') + '>待思考</option>' +
+            '</select>' +
+            '<button class="fav-remove-btn" onclick="removeFav(\'' + id + '\')" title="取消收藏">&times;</button>' +
+          '</div>' +
+          (isInsight ? '<div style="font-weight:700;font-size:13px;margin-bottom:4px;">' + (f.title || '') + '</div>' : '') +
+          '<div style="font-size:12px;color:var(--text2);line-height:1.6;">' + (f.content || '').slice(0, 200) + '</div>' +
+          (f.link ? '<a class="link-btn" href="' + f.link + '" target="_blank" style="font-size:11px;margin-top:6px;display:inline-flex;">原文 &rarr;</a>' : '') +
+        '</div>';
+      }
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  view.innerHTML = html;
+  updateBadges();
+}
+
+function changeFavStatus(id, status) {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  if (favs[id]) { favs[id].status = status; localStorage.setItem('digest-favorites', JSON.stringify(favs)); renderFavorites(); }
+}
+
+function removeFav(id) {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  delete favs[id]; localStorage.setItem('digest-favorites', JSON.stringify(favs));
+  document.querySelectorAll('.bm-btn, .insight-bm-btn').forEach(function(btn) {
+    var card = btn.closest('.detail-card') || btn.closest('.insight-card');
+    if (!card) return;
+    var data = card.classList.contains('insight-card') ? extractInsightData(card) : extractCardData(card);
+    if (data.id === id) { btn.classList.remove('bookmarked'); btn.innerHTML = '&#9734;'; }
+  });
+  renderFavorites();
+}
+
+function updateBadges() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  document.getElementById('badge-fav').textContent = Object.keys(favs).length;
+}
+
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && currentView !== 'today') showToday(); });
+
+// ===== Language Toggle =====
+var currentLang = localStorage.getItem('digest-lang') || 'zh';
+function applyLang() {
+  document.querySelectorAll('.lang-text').forEach(function(el) {
+    el.textContent = el.dataset[currentLang] || el.dataset.en || '';
+  });
+  var btn = document.getElementById('lang-toggle');
+  if (btn) btn.textContent = currentLang === 'zh' ? '中文' : 'EN';
+}
+function toggleLang() {
+  currentLang = currentLang === 'zh' ? 'en' : 'zh';
+  localStorage.setItem('digest-lang', currentLang);
+  applyLang();
+}
+applyLang();
+</script>
+</body>
+</html>
