@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Builders Daily Digest - 2026.11.18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #f8f9fc;
+    --card: #ffffff;
+    --text: #1e1e2e;
+    --text2: #555;
+    --text3: #999;
+    --accent: #6366f1;
+    --accent2: #8b5cf6;
+    --border: rgba(99,102,241,0.08);
+    --glow: rgba(99,102,241,0.12);
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', 'PingFang SC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    position: relative;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+    border-radius: 20px;
+    padding: 44px 40px 36px;
+    color: #fff;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 30%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+  .header h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+  }
+  .header .sub { font-size: 14px; opacity: 0.8; margin-top: 6px; font-weight: 400; }
+  .header .stats-bar {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    padding: 5px 14px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ===== INFOGRAPHIC ===== */
+  .infographic {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px 32px 24px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .infographic h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .info-row {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  /* Left: topic radar */
+  .topic-radar { display: flex; flex-direction: column; gap: 10px; }
+  .topic-bar-item { display: flex; align-items: center; gap: 8px; }
+  .topic-bar-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text2);
+    width: 72px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .topic-bar-track {
+    flex: 1;
+    height: 18px;
+    background: #f3f4f6;
+    border-radius: 9px;
+    overflow: hidden;
+    position: relative;
+  }
+  .topic-bar-fill {
+    height: 100%;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    transition: width 0.6s ease;
+  }
+  /* Center: connection map */
+  .connection-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .connection-map svg { width: 100%; max-width: 420px; }
+  .map-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--text3);
+  }
+  .map-legend span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  /* Right: key numbers */
+  .key-numbers { display: flex; flex-direction: column; gap: 14px; }
+  .kn-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #fafbfd;
+    border-radius: 12px;
+    border: 1px solid #f0f0f5;
+  }
+  .kn-num {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .kn-label { font-size: 12px; color: var(--text2); line-height: 1.4; }
+
+  @media (max-width: 900px) {
+    .info-row { grid-template-columns: 1fr; }
+  }
+
+  /* ===== INSIGHTS TOP GRID ===== */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .insight-col { display: flex; flex-direction: column; gap: 14px; }
+
+  .insight-col-header {
+    padding: 14px 18px;
+    border-radius: 14px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .insight-col-header .col-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .col-product { background: linear-gradient(135deg, #f97316, #ef4444); }
+  .col-tech { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+  .col-user { background: linear-gradient(135deg, #059669, #10b981); }
+
+  .insight-card {
+    position: relative;
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid var(--border);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s ease;
+    overflow: hidden;
+  }
+  .insight-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .col-product ~ .insight-card::before,
+  .col-product + .insight-card::before { background: linear-gradient(90deg, #f97316, #ef4444); }
+  .insight-col:nth-child(1) .insight-card::before { background: linear-gradient(90deg, #f97316, #ef4444); }
+  .insight-col:nth-child(2) .insight-card::before { background: linear-gradient(90deg, #4f46e5, #7c3aed); }
+  .insight-col:nth-child(3) .insight-card::before { background: linear-gradient(90deg, #059669, #10b981); }
+  .insight-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px var(--glow);
+  }
+  .insight-card:hover::before { opacity: 1; }
+
+  .insight-card .title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .insight-card .desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 14px;
+  }
+  .insight-card .sources { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .chip:hover { transform: translateY(-1px); text-decoration: none; }
+  .chip-purple { background: #ede9fe; color: #5b21b6; border-color: #ddd6fe; }
+  .chip-green { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+  .chip-orange { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+
+  /* ===== DIVIDER ===== */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 12px 0 28px;
+    font-size: 12px;
+    color: var(--text3);
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ddd, transparent);
+  }
+
+  /* ===== PODCAST BANNER ===== */
+  .podcast-banner {
+    background: var(--card);
+    border: 1px solid #f9a8d4;
+    border-radius: var(--radius);
+    padding: 0;
+    margin-bottom: 24px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .podcast-left {
+    background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .podcast-left .podcast-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: #be185d;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-bottom: 14px;
+  }
+  .podcast-left h3 { font-size: 17px; color: #9d174d; margin-bottom: 8px; font-weight: 700; }
+  .podcast-guest-tags {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px;
+  }
+  .podcast-guest-tags .g-tag {
+    padding: 2px 8px;
+    background: rgba(190,24,93,0.1);
+    color: #9d174d;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .podcast-left .tagline { font-size: 13px; color: #777; line-height: 1.6; }
+  .podcast-right {
+    padding: 24px 28px;
+  }
+  .podcast-right ul { list-style: none; padding: 0; }
+  .podcast-right li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+  }
+  .podcast-right li:last-child { border-bottom: none; }
+  .podcast-right li .li-icon {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .podcast-right li strong { color: #9d174d; font-weight: 600; }
+
+  /* ===== DETAIL GRID ===== */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .detail-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .detail-card:hover {
+    box-shadow: 0 8px 28px var(--glow);
+    transform: translateY(-2px);
+  }
+  .detail-card .cat-label {
+    align-self: flex-start;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  /* Author */
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .real-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f3f4f6;
+    flex-shrink: 0;
+    background: #e5e7eb;
+  }
+  .author-meta { flex: 1; min-width: 0; }
+  .author-meta .name { font-weight: 700; font-size: 14px; color: var(--text); }
+  .author-meta .id-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .id-tag {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .id-role { background: #ede9fe; color: #6d28d9; }
+  .id-company { background: #dbeafe; color: #1d4ed8; }
+  .id-product { background: #fef3c7; color: #92400e; }
+
+  .detail-card .content {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 14px;
+  }
+
+  /* Engagement bar */
+  .engagement {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+  }
+  .engagement .link-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    background: #ede9fe;
+    transition: all 0.2s;
+  }
+  .engagement .link-btn:hover { background: #ddd6fe; text-decoration: none; }
+  .heat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text3);
+  }
+  .heat-track {
+    width: 48px; height: 4px;
+    background: #f3f4f6;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .heat-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #6366f1, #a855f7);
+  }
+
+  /* ===== CATEGORY GROUP ===== */
+  .cat-group { margin-bottom: 28px; }
+  .cat-group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 0 4px;
+  }
+  .cat-group-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .cat-group-header h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .cat-group-header .cat-count {
+    font-size: 12px;
+    color: var(--text3);
+    margin-left: auto;
+  }
+
+  /* Keyword tag on detail card */
+  .kw-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .kw {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .kw-hot { background: #fef2f2; color: #dc2626; }
+  .kw-new { background: #eff6ff; color: #2563eb; }
+  .kw-trend { background: #f0fdf4; color: #16a34a; }
+  .kw-insight { background: #fefce8; color: #a16207; }
+  .kw-warn { background: #fff7ed; color: #ea580c; }
+
+  /* ===== TOP NAV ===== */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .nav-btn:hover { background: #f3f4f6; }
+  .nav-btn.active {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+  }
+  .nav-badge {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.25);
+    font-weight: 700;
+  }
+  .nav-btn:not(.active) .nav-badge {
+    background: #ede9fe;
+    color: #6d28d9;
+  }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ===== BOOKMARK BTN ===== */
+  .bm-btn {
+    width: 30px; height: 30px;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .bm-btn:hover { background: #fef3c7; }
+  .bm-btn.bookmarked { background: #fef3c7; }
+
+  /* ===== HISTORY PANEL ===== */
+  .history-list { display: flex; flex-direction: column; gap: 10px; }
+  .history-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .history-item:hover {
+    box-shadow: 0 4px 16px var(--glow);
+    transform: translateY(-1px);
+  }
+  .history-item.current {
+    border-color: #6366f1;
+    background: linear-gradient(135deg, rgba(99,102,241,0.04), rgba(139,92,246,0.04));
+  }
+  .history-date {
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    min-width: 48px;
+    text-align: center;
+  }
+  .history-info { flex: 1; }
+  .history-info .hi-title { font-size: 14px; font-weight: 600; color: var(--text); }
+  .history-info .hi-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .history-tag {
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .ht-current { background: #ede9fe; color: #6d28d9; }
+  .ht-past { background: #f3f4f6; color: #999; }
+  .history-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text3);
+    font-size: 14px;
+  }
+
+  /* ===== FAVORITES PANEL ===== */
+  .fav-filters {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .fav-filter-btn {
+    padding: 6px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    background: var(--card);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .fav-filter-btn:hover { border-color: #a5b4fc; }
+  .fav-filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .fav-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    transition: all 0.2s;
+  }
+  .fav-card:hover { box-shadow: 0 4px 16px var(--glow); }
+  .fav-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+  .fav-status-select {
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    background: var(--card);
+    color: var(--text2);
+  }
+  .fav-remove-btn {
+    border: none;
+    background: #fef2f2;
+    color: #dc2626;
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .fav-remove-btn:hover { background: #fecaca; }
+  .fav-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text3);
+    font-size: 14px;
+  }
+  .fav-date-label {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+  .status-deep { background: #ede9fe; color: #6d28d9; border-color: #ddd6fe; }
+  .status-unread { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+  .status-think { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 24px 0 8px;
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .footer a { font-weight: 500; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .insights-grid { grid-template-columns: 1fr; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .podcast-banner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .page { padding: 16px 12px; }
+    .header { padding: 28px 20px 24px; border-radius: 14px; }
+    .header h1 { font-size: 22px; }
+    .top-nav { top: 4px; }
+  }
+
+
+  /* ===== LEFT SIDEBAR ===== */
+  .app-layout { display: flex; min-height: 100vh; }
+  .left-sidebar {
+    width: 220px; position: fixed; top: 0; left: 0; height: 100vh;
+    background: #1a1a2e; color: #e2e8f0; overflow-y: auto; z-index: 100;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .left-sidebar::-webkit-scrollbar { width: 4px; }
+  .left-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+  .sidebar-logo {
+    padding: 24px 20px 16px; font-family: 'Noto Serif SC', serif;
+    font-size: 15px; font-weight: 900; color: #fff;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .sidebar-back {
+    display: flex; align-items: center; gap: 6px; padding: 12px 20px;
+    font-size: 13px; color: #94a3b8; cursor: pointer; transition: all 0.2s;
+    border: none; background: none; width: 100%; text-align: left; font-family: inherit;
+  }
+  .sidebar-back:hover { color: #fff; background: rgba(255,255,255,0.05); }
+  .sidebar-section {
+    padding: 16px 16px 8px; font-size: 11px; font-weight: 700;
+    color: #64748b; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .date-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+    cursor: pointer; transition: all 0.2s; border: none; background: none;
+    width: 100%; text-align: left; font-family: inherit; color: #cbd5e1; font-size: 13px;
+  }
+  .date-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .date-item.active { background: rgba(99,102,241,0.2); color: #a5b4fc; border-left: 3px solid #6366f1; }
+  .date-item .date-label { flex: 1; }
+  .date-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .date-tag-today { background: rgba(99,102,241,0.3); color: #a5b4fc; }
+  .date-tag-past { background: rgba(255,255,255,0.08); color: #94a3b8; }
+  .sidebar-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 12px 16px; }
+  .fav-nav-btn {
+    display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+    cursor: pointer; transition: all 0.2s; border: none; background: none;
+    width: 100%; text-align: left; font-family: inherit; color: #fbbf24; font-size: 13px; font-weight: 600;
+  }
+  .fav-nav-btn:hover { background: rgba(255,255,255,0.06); }
+  .fav-nav-btn.active { background: rgba(251,191,36,0.15); border-left: 3px solid #fbbf24; }
+  .fav-badge {
+    font-size: 10px; background: rgba(251,191,36,0.25); color: #fbbf24;
+    padding: 1px 6px; border-radius: 8px; font-weight: 800; margin-left: auto;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main-content { margin-left: 220px; flex: 1; min-height: 100vh; }
+  .main-content .page { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* History view */
+  .history-main-view { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  .history-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .history-header h2 { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 900; }
+  .history-date-badge {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #fff;
+    padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+  }
+  .history-insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .history-insight-card {
+    background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 16px;
+  }
+  .history-insight-card .hi-cat { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+  .history-insight-card .hi-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .history-insight-card .hi-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+  .history-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+
+  /* Favorites view */
+  .fav-main-view { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  .fav-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .fav-header h2 { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 900; }
+  .fav-filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .fav-filter-btn {
+    padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border);
+    background: var(--card); cursor: pointer; font-family: inherit;
+    font-size: 12px; font-weight: 600; color: var(--text2); transition: all 0.2s;
+  }
+  .fav-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .fav-filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .fav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .fav-card {
+    background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+    padding: 16px; transition: all 0.2s;
+  }
+  .fav-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .fav-top-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .fav-date-label { font-size: 11px; color: var(--text3); flex: 1; }
+  .fav-status-select {
+    font-size: 10px; padding: 2px 6px; border-radius: 6px;
+    border: 1px solid var(--border); font-family: inherit; cursor: pointer;
+  }
+  .fav-remove-btn {
+    width: 24px; height: 24px; border: none; background: #fee2e2; color: #ef4444;
+    border-radius: 6px; cursor: pointer; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .fav-remove-btn:hover { background: #fecaca; }
+  .fav-empty-msg { text-align: center; padding: 60px 20px; color: var(--text3); font-size: 14px; }
+
+  /* Language toggle button */
+  .lang-btn {
+    padding: 4px 14px; border-radius: 20px; border: 1.5px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.15); color: #fff; font-size: 12px; font-weight: 700;
+    cursor: pointer; font-family: inherit; transition: all 0.2s; letter-spacing: 0.5px;
+  }
+  .lang-btn:hover { background: rgba(255,255,255,0.3); }
+
+  /* Podcast bookmark button */
+  .podcast-bm-btn {
+    border: 1.5px solid #f9a8d4; background: rgba(157,23,77,0.08); color: #9d174d;
+    border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: 13px;
+    font-weight: 600; transition: all 0.2s;
+  }
+  .podcast-bm-btn:hover { background: rgba(157,23,77,0.15); border-color: #f472b6; }
+  .podcast-bm-btn.bookmarked { background: rgba(157,23,77,0.2); color: #be185d; border-color: #ec4899; }
+
+  /* Bookmark buttons */
+  .insight-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .insight-bm-btn, .bm-btn {
+    width: 26px; height: 26px; border: none; background: #f3f4f6; border-radius: 6px;
+    cursor: pointer; font-size: 13px; display: flex; align-items: center;
+    justify-content: center; transition: all 0.2s; flex-shrink: 0;
+  }
+  .insight-bm-btn:hover, .bm-btn:hover { background: #fef3c7; }
+  .insight-bm-btn.bookmarked, .bm-btn.bookmarked { background: #fef3c7; }
+
+  /* Mobile */
+  .mobile-menu-btn {
+    display: none; position: fixed; top: 12px; left: 12px; z-index: 200;
+    width: 40px; height: 40px; border: none; background: #1a1a2e; color: #fff;
+    border-radius: 10px; font-size: 18px; cursor: pointer;
+    align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .mobile-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); z-index: 999;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+  @media (max-width: 768px) {
+    .left-sidebar { transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; }
+    .left-sidebar.mobile-open { transform: translateX(0); }
+    .main-content { margin-left: 0; }
+    .mobile-menu-btn { display: flex; }
+    .history-insights-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileMenu()">&#9776;</button>
+<div class="mobile-overlay" id="mobile-overlay" onclick="toggleMobileMenu()"></div>
+
+<div class="app-layout">
+  <div class="left-sidebar" id="left-sidebar">
+    <div class="sidebar-logo">&#128218; 日期目录</div>
+    <button class="sidebar-back" id="back-home" onclick="showToday()">&#8592; 返回首页</button>
+    <div class="sidebar-section">历史记录</div>
+    <div id="date-list"></div>
+    <div class="sidebar-divider"></div>
+    <button class="fav-nav-btn" id="fav-nav-btn" onclick="showFavorites()">
+      &#11088; 收藏 <span class="fav-badge" id="badge-fav">0</span>
+    </button>
+  </div>
+
+  <div class="main-content">
+    <div id="today-view">
+      <div class="page">
+        <div class="header">
+          <div class="header-inner">
+            <div>
+              <h1>AI Builders Daily Digest</h1>
+              <div class="sub">AI 产品经理每日必读 | 追踪真正在构建产品的人</div>
+            </div>
+            <div class="stats-bar">
+              <span class="stat-pill">2026.11.18</span>
+              <span class="stat-pill">14 位构建者</span>
+              <span class="stat-pill">29 条动态</span>
+              <span class="stat-pill">1 期播客</span>
+              <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">EN</button>
+            </div>
+          </div>
+        </div>
+        <div class="insights-grid">
+<div class="insight-col">
+      <div class="insight-col-header col-product">
+        <div class="col-icon">P</div>产品应用启示
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="software factories feel like a temporary problem. the models will learn to build..." data-zh="software factories feel like a temporary problem. the models will learn to build...">software factories feel like a temporary problem. the models will learn to build...</span></div>
+        <div class="desc"><span class="lang-text" data-en="software factories feel like a temporary problem. the models will learn to build them for you
+
+the more interesting question to me is how to build a workspace where agents can collaborate with you" data-zh="software factories feel like a temporary problem. the models will learn to build them for you
+
+the more interesting question to me is how to build a workspace where agents can collaborate with you">software factories feel like a temporary problem. the models will learn to build them for you
+
+the more interesting question to me is how to build a workspace where agents can collaborate with you</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-orange" href="https://x.com/trq212/status/2122438326431154210" target="_blank">Thariq &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="A new era of software is upon us. Personalized, fully owned, open source. And hi..." data-zh="A new era of software is upon us. Personalized, fully owned, open source. And hi...">A new era of software is upon us. Personalized, fully owned, open source. And hi...</span></div>
+        <div class="desc"><span class="lang-text" data-en="A new era of software is upon us. Personalized, fully owned, open source. And higher quality than what it replaces. https://t.co/r2HlwWWvvl" data-zh="A new era of software is upon us. Personalized, fully owned, open source. And higher quality than what it replaces. https://t.co/r2HlwWWvvl">A new era of software is upon us. Personalized, fully owned, open source. And higher quality than what it replaces. https://t.co/r2HlwWWvvl</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-orange" href="https://x.com/rauchg/status/2122396034186014919" target="_blank">Guillermo Rauch &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="Deranged cult https://t.co/FmC9L8N1ZL" data-zh="Deranged cult https://t.co/FmC9L8N1ZL">Deranged cult https://t.co/FmC9L8N1ZL</span></div>
+        <div class="desc"><span class="lang-text" data-en="Deranged cult https://t.co/FmC9L8N1ZL" data-zh="Deranged cult https://t.co/FmC9L8N1ZL">Deranged cult https://t.co/FmC9L8N1ZL</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-orange" href="https://x.com/amasad/status/2122422367557464548" target="_blank">Amjad Masad &rarr;</a></div>
+        </div>
+      </div></div>
+<div class="insight-col">
+      <div class="insight-col-header col-tech">
+        <div class="col-icon">T</div>技术启示
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="for example, this is me working with agents on a new character for my game https..." data-zh="for example, this is me working with agents on a new character for my game https...">for example, this is me working with agents on a new character for my game https...</span></div>
+        <div class="desc"><span class="lang-text" data-en="for example, this is me working with agents on a new character for my game https://t.co/jfWNcszyin" data-zh="for example, this is me working with agents on a new character for my game https://t.co/jfWNcszyin">for example, this is me working with agents on a new character for my game https://t.co/jfWNcszyin</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-purple" href="https://x.com/trq212/status/2122438328079524159" target="_blank">Thariq &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="People: Please reduce the number of permission alerts so agents can work on macO..." data-zh="People: Please reduce the number of permission alerts so agents can work on macO...">People: Please reduce the number of permission alerts so agents can work on macO...</span></div>
+        <div class="desc"><span class="lang-text" data-en="People: Please reduce the number of permission alerts so agents can work on macOS without constant babysitting
+
+Apple: I hear you, here’s some new scary alerts https://t.co/Saw8ftcNNW" data-zh="People: Please reduce the number of permission alerts so agents can work on macOS without constant babysitting
+
+Apple: I hear you, here’s some new scary alerts https://t.co/Saw8ftcNNW">People: Please reduce the number of permission alerts so agents can work on macOS without constant babysitting
+
+Apple: I hear you, here’s some new scary alerts https://t.co/Saw8ftcNNW</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-purple" href="https://x.com/steipete/status/2122463466304971068" target="_blank">Peter Steinberger &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="The old way: users are human, you run user interviews, get inspired, mock up use..." data-zh="The old way: users are human, you run user interviews, get inspired, mock up use...">The old way: users are human, you run user interviews, get inspired, mock up use...</span></div>
+        <div class="desc"><span class="lang-text" data-en="The old way: users are human, you run user interviews, get inspired, mock up user journeys.
+
+The new way: users are agents, you run evals, evals inform the software engineering loop.
+
+Good read on how" data-zh="The old way: users are human, you run user interviews, get inspired, mock up user journeys.
+
+The new way: users are agents, you run evals, evals inform the software engineering loop.
+
+Good read on how">The old way: users are human, you run user interviews, get inspired, mock up user journeys.
+
+The new way: users are agents, you run evals, evals inform the software engineering loop.
+
+Good read on how</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-purple" href="https://x.com/rauchg/status/2122415506451841215" target="_blank">Guillermo Rauch &rarr;</a></div>
+        </div>
+      </div></div>
+<div class="insight-col">
+      <div class="insight-col-header col-user">
+        <div class="col-icon">U</div>用户与市场启示
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent ye..." data-zh="We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent ye...">We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent ye...</span></div>
+        <div class="desc"><span class="lang-text" data-en="We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent years figuring out scheduling and calendar management.  We can’t wait to learn from them as we build the next generation o" data-zh="We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent years figuring out scheduling and calendar management.  We can’t wait to learn from them as we build the next generation o">We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent years figuring out scheduling and calendar management.  We can’t wait to learn from them as we build the next generation o</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-green" href="https://x.com/GoogleLabs/status/2122461899178820069" target="_blank">Google Labs &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="If you want individual employee brains rolling up into team brains and then a to..." data-zh="If you want individual employee brains rolling up into team brains and then a to...">If you want individual employee brains rolling up into team brains and then a to...</span></div>
+        <div class="desc"><span class="lang-text" data-en="If you want individual employee brains rolling up into team brains and then a top level company brain, GBrain's Hosted option supports it out of the box 
+
+Memory works the way you want it to
+
+https://" data-zh="If you want individual employee brains rolling up into team brains and then a top level company brain, GBrain's Hosted option supports it out of the box 
+
+Memory works the way you want it to
+
+https://">If you want individual employee brains rolling up into team brains and then a top level company brain, GBrain's Hosted option supports it out of the box 
+
+Memory works the way you want it to
+
+https://</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-green" href="https://x.com/garrytan/status/2122517681740124271" target="_blank">Garry Tan &rarr;</a></div>
+        </div>
+      </div><div class="insight-card" data-bookmarkable="1">
+        <div class="title"><span class="lang-text" data-en="look, a sane person https://t.co/PejOwWp8RZ" data-zh="look, a sane person https://t.co/PejOwWp8RZ">look, a sane person https://t.co/PejOwWp8RZ</span></div>
+        <div class="desc"><span class="lang-text" data-en="look, a sane person https://t.co/PejOwWp8RZ" data-zh="look, a sane person https://t.co/PejOwWp8RZ">look, a sane person https://t.co/PejOwWp8RZ</span></div>
+        <div class="insight-bottom">
+          <div class="sources"><a class="chip chip-green" href="https://x.com/thenanyu/status/2122438864791110126" target="_blank">Nan Yu &rarr;</a></div>
+        </div>
+      </div></div>
+        </div>
+        <div class="section-divider">信息源详情</div>
+        <div class="podcast-banner" id="podcast-banner">
+      <div class="podcast-left">
+        <div class="podcast-badge">&#127911; Latent Space</div>
+        <h3><span class="lang-text" data-en="[One Million AI Engineer Special] How Stanford Teaches AI-Native Engineering — Mihail Eric, Monaco" data-zh="[One Million AI Engineer Special] How Stanford Teaches AI-Native Engineering — Mihail Eric, Monaco">[One Million AI Engineer Special] How Stanford Teaches AI-Native Engineering — Mihail Eric, Monaco</span></h3>
+        <div class="tagline" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <a href="https://www.youtube.com/@LatentSpacePod" target="_blank">观看完整内容 &rarr;</a>
+          <button class="podcast-bm-btn" id="podcast-bm-btn" title="收藏播客">&#9734; 收藏</button>
+        </div>
+      </div>
+      <div class="podcast-right">
+        <ul><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="Okay, this is a pretty special episode because we're celebrating one million subscribers on the AIU Code, uh, AI, AI Engineer YouTube channel" data-zh="Okay, this is a pretty special episode because we're celebrating one million subscribers on the AIU Code, uh, AI, AI Engineer YouTube channel">Okay, this is a pretty special episode because we're celebrating one million subscribers on the AIU Code, uh, AI, AI Engineer YouTube channel</span></li><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="So go over there and subscribe if you haven't heard about it already" data-zh="So go over there and subscribe if you haven't heard about it already">So go over there and subscribe if you haven't heard about it already</span></li><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="The guest is Mihail Eric, who is not only teaching the Modern Software Developer at Stanford, which is going viral right now for basically covering all the AI-native development pract- best practices, uh, but also he is head of AI at Monaco" data-zh="The guest is Mihail Eric, who is not only teaching the Modern Software Developer at Stanford, which is going viral right now for basically covering all the AI-native development pract- best practices, uh, but also he is head of AI at Monaco">The guest is Mihail Eric, who is not only teaching the Modern Software Developer at Stanford, which is going viral right now for basically covering all the AI-native development pract- best practices, uh, but also he is head of AI at Monaco</span></li><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="So he's not only a teacher, but he's a practitioner" data-zh="So he's not only a teacher, but he's a practitioner">So he's not only a teacher, but he's a practitioner</span></li><li><span class="li-icon">&#128161;</span><span class="lang-text" data-en="Um, and those of you coming to AIU Code Summit next week, um, it's gonna be the celebration of all the extreme progress that you've seen in coding in the last year" data-zh="Um, and those of you coming to AIU Code Summit next week, um, it's gonna be the celebration of all the extreme progress that you've seen in coding in the last year">Um, and those of you coming to AIU Code Summit next week, um, it's gonna be the celebration of all the extreme progress that you've seen in coding in the last year</span></li></ul>
+      </div>
+    </div>
+        <div class="cat-group">
+      <div class="cat-group-header">
+        <div class="cat-group-icon" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);">A</div>
+        <h3>Agent 架构与框架</h3>
+        <span class="cat-count">6 条动态</span>
+      </div>
+      <div class="detail-grid"><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">alerts</span><span class="kw kw-new">People</span><span class="kw kw-trend">Please</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/steipete" alt="Peter Steinberger">
+          <div class="author-meta">
+            <div class="name">Peter Steinberger</div>
+            <div class="id-row"><span class="id-tag id-role">Polyagentmorous ClawFather. Ca</span><span class="id-tag id-company">@OpenClaw🦞 + @OpenAI</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="People: Please reduce the number of permission alerts so agents can work on macOS without constant babysitting
+
+Apple: I hear you, here’s some new scary alerts https://t.co/Saw8ftcNNW" data-zh="People: Please reduce the number of permission alerts so agents can work on macOS without constant babysitting
+
+Apple: I hear you, here’s some new scary alerts https://t.co/Saw8ftcNNW">People: Please reduce the number of permission alerts so agents can work on macOS without constant babysitting
+
+Apple: I hear you, here’s some new scary alerts https://t.co/Saw8ftcNNW</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/steipete/status/2122463466304971068" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 1,089<div class="heat-track"><div class="heat-fill" style="width:22%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">evals</span><span class="kw kw-new">The</span><span class="kw kw-trend">way</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/rauchg" alt="Guillermo Rauch">
+          <div class="author-meta">
+            <div class="name">Guillermo Rauch</div>
+            <div class="id-row"><span class="id-tag id-role">@vercel CEO</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="The old way: users are human, you run user interviews, get inspired, mock up user journeys.
+
+The new way: users are agents, you run evals, evals inform the software engineering loop.
+
+Good read on how we do evals at Vercel. https://t.co/zkre5Qbohe" data-zh="The old way: users are human, you run user interviews, get inspired, mock up user journeys.
+
+The new way: users are agents, you run evals, evals inform the software engineering loop.
+
+Good read on how we do evals at Vercel. https://t.co/zkre5Qbohe">The old way: users are human, you run user interviews, get inspired, mock up user journeys.
+
+The new way: users are agents, you run evals, evals inform the software engineering loop.
+
+Good read on how we do evals at Vercel. https://t.co/zkre5Qbohe</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/rauchg/status/2122415506451841215" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 585<div class="heat-track"><div class="heat-fill" style="width:12%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">We’re</span><span class="kw kw-new">excited</span><span class="kw kw-trend">welcome</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/GoogleLabs" alt="Google Labs">
+          <div class="author-meta">
+            <div class="name">Google Labs</div>
+            <div class="id-row"><span class="id-tag id-role">Google’s home for our latest A</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent years figuring out scheduling and calendar management.  We can’t wait to learn from them as we build the next generation of intuitive AI tools together for small businesses 🤝 https://t.co/8bzjebeGdD" data-zh="We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent years figuring out scheduling and calendar management.  We can’t wait to learn from them as we build the next generation of intuitive AI tools together for small businesses 🤝 https://t.co/8bzjebeGdD">We’re excited to welcome Howie to Google Labs! 
+
+The @Howie_ai team has spent years figuring out scheduling and calendar management.  We can’t wait to learn from them as we build the next generation of intuitive AI tools together for small businesses 🤝 https://t.co/8bzjebeGdD</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/GoogleLabs/status/2122461899178820069" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 502<div class="heat-track"><div class="heat-fill" style="width:10%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">agent</span><span class="kw kw-new">agents</span><span class="kw kw-trend">token</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/levie" alt="Aaron Levie">
+          <div class="author-meta">
+            <div class="name">Aaron Levie</div>
+            <div class="id-row"><span class="id-tag id-role">ceo @box - your business lives</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="The chart of token spend per employee still has no ceiling in sight. And the closer you are to AI right now the deeper the sense is that we’re actually still in the early part of the curve of token use and adoption. 
+
+This summer and fall’s model releases have continued to push the state of the art forward at a rate that already felt hard to maintain. As a result, for most productive use-cases the models are only now starting to actually work, and the feeling is that things will only accelerate from here.
+
+Coding, in retrospect, was basically trash even 12 months ago. Now it’s finally starting to get good. And now that coding is actually working, you’re getting tool and computer use, which open up a wide variety of knowledge work domains that weren’t possible to throw agents at before.
+
+Once you have agents that can code, use computers, leverage any tool out there, and understand a variety of domains, you can begin to throw them at a wide variety of knowledge work tasks that were hard to bring automation to across finance, life sciences, cyber, and more. So that brings agents to a broad set of work that we’re not really using them in yet at scale. 
+
+Then comes the new form factors of agents. Agent swarms and background agents are going to eat up vastly more tokens than anything we can imagine. You’ll have agents running in most enterprises workflows processing data, validating work, doing research, providing decision support, and so on. And we’ll have swarms that fan out in parallel in areas like cyber, life sciences, coding, and more.
+
+So basically tokens are only going up from here." data-zh="The chart of token spend per employee still has no ceiling in sight. And the closer you are to AI right now the deeper the sense is that we’re actually still in the early part of the curve of token use and adoption. 
+
+This summer and fall’s model releases have continued to push the state of the art forward at a rate that already felt hard to maintain. As a result, for most productive use-cases the models are only now starting to actually work, and the feeling is that things will only accelerate from here.
+
+Coding, in retrospect, was basically trash even 12 months ago. Now it’s finally starting to get good. And now that coding is actually working, you’re getting tool and computer use, which open up a wide variety of knowledge work domains that weren’t possible to throw agents at before.
+
+Once you have agents that can code, use computers, leverage any tool out there, and understand a variety of domains, you can begin to throw them at a wide variety of knowledge work tasks that were hard to bring automation to across finance, life sciences, cyber, and more. So that brings agents to a broad set of work that we’re not really using them in yet at scale. 
+
+Then comes the new form factors of agents. Agent swarms and background agents are going to eat up vastly more tokens than anything we can imagine. You’ll have agents running in most enterprises workflows processing data, validating work, doing research, providing decision support, and so on. And we’ll have swarms that fan out in parallel in areas like cyber, life sciences, coding, and more.
+
+So basically tokens are only going up from here.">The chart of token spend per employee still has no ceiling in sight. And the closer you are to AI right now the deeper the sense is that we’re actually still in the early part of the curve of token use and adoption. 
+
+This summer and fall’s model releases have continued to push the state of the art forward at a rate that already felt hard to maintain. As a result, for most productive use-cases the models are only now starting to actually work, and the feeling is that things will only accelerate from here.
+
+Coding, in retrospect, was basically trash even 12 months ago. Now it’s finally starting to get good. And now that coding is actually working, you’re getting tool and computer use, which open up a wide variety of knowledge work domains that weren’t possible to throw agents at before.
+
+Once you have agents that can code, use computers, leverage any tool out there, and understand a variety of domains, you can begin to throw them at a wide variety of knowledge work tasks that were hard to bring automation to across finance, life sciences, cyber, and more. So that brings agents to a broad set of work that we’re not really using them in yet at scale. 
+
+Then comes the new form factors of agents. Agent swarms and background agents are going to eat up vastly more tokens than anything we can imagine. You’ll have agents running in most enterprises workflows processing data, validating work, doing research, providing decision support, and so on. And we’ll have swarms that fan out in parallel in areas like cyber, life sciences, coding, and more.
+
+So basically tokens are only going up from here.</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/levie/status/2122508098351038532" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 192<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">vibe</span><span class="kw kw-new">coding</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/nikunj" alt="Nikunj Kothari">
+          <div class="author-meta">
+            <div class="name">Nikunj Kothari</div>
+            <div class="id-row"><span class="id-tag id-role">partner @fpvventures - investi</span><span class="id-tag id-company">@opendoor</span><span class="id-tag id-product">@atlassian &amp; others. love @shi</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="2026 infra wars in a nutshell..
+
+Vibe coding in Q1 
+Harnesses in Q2 
+Sandboxes in Q3 
+Agentic CI in Q4
+
+More providers than I can keep track of. 
+
+Any guesses for what comes next?" data-zh="2026 infra wars in a nutshell..
+
+Vibe coding in Q1 
+Harnesses in Q2 
+Sandboxes in Q3 
+Agentic CI in Q4
+
+More providers than I can keep track of. 
+
+Any guesses for what comes next?">2026 infra wars in a nutshell..
+
+Vibe coding in Q1 
+Harnesses in Q2 
+Sandboxes in Q3 
+Agentic CI in Q4
+
+More providers than I can keep track of. 
+
+Any guesses for what comes next?</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/nikunj/status/2122543500814336281" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 109<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">agents</span><span class="kw kw-new">tokens</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/danshipper" alt="Dan Shipper">
+          <div class="author-meta">
+            <div class="name">Dan Shipper</div>
+            <div class="id-row"><span class="id-tag id-role">ceo @every</span><span class="id-tag id-company">the only subscription you need</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="musing:
+
+what if the best way to rank a feed in the AI age is proof of work. 
+
+allow agents to report how many tokens they’ve used based on a piece of content, and use that to rank it on a feed that humans and agents read 
+
+https://t.co/HoJvzKELBP https://t.co/ZJe1gZMFbM" data-zh="musing:
+
+what if the best way to rank a feed in the AI age is proof of work. 
+
+allow agents to report how many tokens they’ve used based on a piece of content, and use that to rank it on a feed that humans and agents read 
+
+https://t.co/HoJvzKELBP https://t.co/ZJe1gZMFbM">musing:
+
+what if the best way to rank a feed in the AI age is proof of work. 
+
+allow agents to report how many tokens they’ve used based on a piece of content, and use that to rank it on a feed that humans and agents read 
+
+https://t.co/HoJvzKELBP https://t.co/ZJe1gZMFbM</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/danshipper/status/2122541401804054826" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 13<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div></div>
+    </div><div class="cat-group">
+      <div class="cat-group-header">
+        <div class="cat-group-icon" style="background:linear-gradient(135deg,#f97316,#ef4444);">P</div>
+        <h3>产品案例与实战</h3>
+        <span class="cat-count">10 条动态</span>
+      </div>
+      <div class="detail-grid"><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">you</span><span class="kw kw-new">want</span><span class="kw kw-trend">brains</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/garrytan" alt="Garry Tan">
+          <div class="author-meta">
+            <div class="name">Garry Tan</div>
+            <div class="id-row"><span class="id-tag id-role">President &amp; CEO @ycombinator —</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="If you want individual employee brains rolling up into team brains and then a top level company brain, GBrain's Hosted option supports it out of the box 
+
+Memory works the way you want it to
+
+https://t.co/3z3j2G3Oyl https://t.co/myV5KlcvmK" data-zh="If you want individual employee brains rolling up into team brains and then a top level company brain, GBrain's Hosted option supports it out of the box 
+
+Memory works the way you want it to
+
+https://t.co/3z3j2G3Oyl https://t.co/myV5KlcvmK">If you want individual employee brains rolling up into team brains and then a top level company brain, GBrain's Hosted option supports it out of the box 
+
+Memory works the way you want it to
+
+https://t.co/3z3j2G3Oyl https://t.co/myV5KlcvmK</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/garrytan/status/2122517681740124271" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 317<div class="heat-track"><div class="heat-fill" style="width:7%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">look</span><span class="kw kw-new">sane</span><span class="kw kw-trend">person</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/thenanyu" alt="Nan Yu">
+          <div class="author-meta">
+            <div class="name">Nan Yu</div>
+            <div class="id-row"><span class="id-tag id-role">product</span><span class="id-tag id-company">codex @openai. prev head of pr</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="look, a sane person https://t.co/PejOwWp8RZ" data-zh="look, a sane person https://t.co/PejOwWp8RZ">look, a sane person https://t.co/PejOwWp8RZ</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/thenanyu/status/2122438864791110126" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 310<div class="heat-track"><div class="heat-fill" style="width:6%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">with</span><span class="kw kw-new">easy</span><span class="kw kw-trend">Turn</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/joshwoodward" alt="Josh Woodward">
+          <div class="author-meta">
+            <div class="name">Josh Woodward</div>
+            <div class="id-row"><span class="id-tag id-role">VP</span><span class="id-tag id-company">@Google @GoogleLabs @GeminiApp</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Turn your sources into interactive sites with @Gemini_Notebook - we made one with all the periodic table names. :) These are easy to make, easy to share. https://t.co/7atKNhzskL" data-zh="Turn your sources into interactive sites with @Gemini_Notebook - we made one with all the periodic table names. :) These are easy to make, easy to share. https://t.co/7atKNhzskL">Turn your sources into interactive sites with @Gemini_Notebook - we made one with all the periodic table names. :) These are easy to make, easy to share. https://t.co/7atKNhzskL</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/joshwoodward/status/2122453269842886788" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 294<div class="heat-track"><div class="heat-fill" style="width:6%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Claude</span><span class="kw kw-new">model</span><span class="kw kw-trend">context</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/petergyang" alt="Peter Yang">
+          <div class="author-meta">
+            <div class="name">Peter Yang</div>
+            <div class="id-row"><span class="id-tag id-role">Practical AI tutorials and int</span><span class="id-tag id-company">Get my best AI skills and guid</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="My top 5 takeaways from @nateparrott on how to get Claude to design without AI slop:
+
+1. Give Claude context upfront.
+
+Share screenshots, pages you like, and your past work. For an existing product, have Claude rebuild the real screens from code.
+
+2. Research familiar UX patterns.
+
+For hard layout problems, ask Claude to research familiar products that solve something similar and note the layouts people already know how to use.
+
+3. Make Claude aware of its design biases.
+
+&quot;The model has no idea what its own biases are.&quot; In your design.md or another file, consider discouraging Claude's tells like serif text, off-white backgrounds, and card-edge bars.
+
+4. Start with wireframes.
+
+Have Claude create wireframes first and give it feedback to nail your core user flows before going deep on fonts and colors.
+
+5. Ask for multiple options, then remix them.
+
+Ask Claude for 5 options for key screens with different fonts, colors, and styles. Then pick the parts you like and ask it to remix and create 5 more options.
+
+📌 Watch the full episode now: https://t.co/HPX5HjXafX
+
+Also available as a written post: https://t.co/jcofmkQc01" data-zh="My top 5 takeaways from @nateparrott on how to get Claude to design without AI slop:
+
+1. Give Claude context upfront.
+
+Share screenshots, pages you like, and your past work. For an existing product, have Claude rebuild the real screens from code.
+
+2. Research familiar UX patterns.
+
+For hard layout problems, ask Claude to research familiar products that solve something similar and note the layouts people already know how to use.
+
+3. Make Claude aware of its design biases.
+
+&quot;The model has no idea what its own biases are.&quot; In your design.md or another file, consider discouraging Claude's tells like serif text, off-white backgrounds, and card-edge bars.
+
+4. Start with wireframes.
+
+Have Claude create wireframes first and give it feedback to nail your core user flows before going deep on fonts and colors.
+
+5. Ask for multiple options, then remix them.
+
+Ask Claude for 5 options for key screens with different fonts, colors, and styles. Then pick the parts you like and ask it to remix and create 5 more options.
+
+📌 Watch the full episode now: https://t.co/HPX5HjXafX
+
+Also available as a written post: https://t.co/jcofmkQc01">My top 5 takeaways from @nateparrott on how to get Claude to design without AI slop:
+
+1. Give Claude context upfront.
+
+Share screenshots, pages you like, and your past work. For an existing product, have Claude rebuild the real screens from code.
+
+2. Research familiar UX patterns.
+
+For hard layout problems, ask Claude to research familiar products that solve something similar and note the layouts people already know how to use.
+
+3. Make Claude aware of its design biases.
+
+&quot;The model has no idea what its own biases are.&quot; In your design.md or another file, consider discouraging Claude's tells like serif text, off-white backgrounds, and card-edge bars.
+
+4. Start with wireframes.
+
+Have Claude create wireframes first and give it feedback to nail your core user flows before going deep on fonts and colors.
+
+5. Ask for multiple options, then remix them.
+
+Ask Claude for 5 options for key screens with different fonts, colors, and styles. Then pick the parts you like and ask it to remix and create 5 more options.
+
+📌 Watch the full episode now: https://t.co/HPX5HjXafX
+
+Also available as a written post: https://t.co/jcofmkQc01</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/petergyang/status/2122347721298510021" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 138<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Welcome</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/joshwoodward" alt="Josh Woodward">
+          <div class="author-meta">
+            <div class="name">Josh Woodward</div>
+            <div class="id-row"><span class="id-tag id-role">VP</span><span class="id-tag id-company">@Google @GoogleLabs @GeminiApp</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Welcome! Welcome! https://t.co/vJHr1az0rL" data-zh="Welcome! Welcome! https://t.co/vJHr1az0rL">Welcome! Welcome! https://t.co/vJHr1az0rL</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/joshwoodward/status/2122514247045496978" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 112<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">True</span><span class="kw kw-new">drone</span><span class="kw kw-trend">autonomy</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/garrytan" alt="Garry Tan">
+          <div class="author-meta">
+            <div class="name">Garry Tan</div>
+            <div class="id-row"><span class="id-tag id-role">President &amp; CEO @ycombinator —</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="True drone autonomy on top of almost any other flight platform is now here
+
+Degla is already working with mission critical government agencies for search &amp; rescue https://t.co/VFcnBzZGmZ" data-zh="True drone autonomy on top of almost any other flight platform is now here
+
+Degla is already working with mission critical government agencies for search &amp; rescue https://t.co/VFcnBzZGmZ">True drone autonomy on top of almost any other flight platform is now here
+
+Degla is already working with mission critical government agencies for search &amp; rescue https://t.co/VFcnBzZGmZ</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/garrytan/status/2122487869780742304" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 93<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div></div>
+    </div><div class="cat-group">
+      <div class="cat-group-header">
+        <div class="cat-group-icon" style="background:linear-gradient(135deg,#10b981,#059669);">E</div>
+        <h3>平台与生态动态</h3>
+        <span class="cat-count">5 条动态</span>
+      </div>
+      <div class="detail-grid"><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">agents</span><span class="kw kw-new">models</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/trq212" alt="Thariq">
+          <div class="author-meta">
+            <div class="name">Thariq</div>
+            <div class="id-row"><span class="id-tag id-role">playing WoW forever</span><span class="id-tag id-company">formerly Claude Code @anthropi</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="software factories feel like a temporary problem. the models will learn to build them for you
+
+the more interesting question to me is how to build a workspace where agents can collaborate with you" data-zh="software factories feel like a temporary problem. the models will learn to build them for you
+
+the more interesting question to me is how to build a workspace where agents can collaborate with you">software factories feel like a temporary problem. the models will learn to build them for you
+
+the more interesting question to me is how to build a workspace where agents can collaborate with you</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/trq212/status/2122438326431154210" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 4,841<div class="heat-track"><div class="heat-fill" style="width:100%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">new</span><span class="kw kw-new">era</span><span class="kw kw-trend">software</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/rauchg" alt="Guillermo Rauch">
+          <div class="author-meta">
+            <div class="name">Guillermo Rauch</div>
+            <div class="id-row"><span class="id-tag id-role">@vercel CEO</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="A new era of software is upon us. Personalized, fully owned, open source. And higher quality than what it replaces. https://t.co/r2HlwWWvvl" data-zh="A new era of software is upon us. Personalized, fully owned, open source. And higher quality than what it replaces. https://t.co/r2HlwWWvvl">A new era of software is upon us. Personalized, fully owned, open source. And higher quality than what it replaces. https://t.co/r2HlwWWvvl</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/rauchg/status/2122396034186014919" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 3,933<div class="heat-track"><div class="heat-fill" style="width:81%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Deranged</span><span class="kw kw-new">cult</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/amasad" alt="Amjad Masad">
+          <div class="author-meta">
+            <div class="name">Amjad Masad</div>
+            <div class="id-row"><span class="id-tag id-role">ceo @replit. civilizationist</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Deranged cult https://t.co/FmC9L8N1ZL" data-zh="Deranged cult https://t.co/FmC9L8N1ZL">Deranged cult https://t.co/FmC9L8N1ZL</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/amasad/status/2122422367557464548" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 3,212<div class="heat-track"><div class="heat-fill" style="width:66%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">for</span><span class="kw kw-new">example</span><span class="kw kw-trend">this</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/trq212" alt="Thariq">
+          <div class="author-meta">
+            <div class="name">Thariq</div>
+            <div class="id-row"><span class="id-tag id-role">playing WoW forever</span><span class="id-tag id-company">formerly Claude Code @anthropi</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="for example, this is me working with agents on a new character for my game https://t.co/jfWNcszyin" data-zh="for example, this is me working with agents on a new character for my game https://t.co/jfWNcszyin">for example, this is me working with agents on a new character for my game https://t.co/jfWNcszyin</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/trq212/status/2122438328079524159" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 1,329<div class="heat-track"><div class="heat-fill" style="width:27%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">model</span><span class="kw kw-new">models</span><span class="kw kw-trend">inference</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/rauchg" alt="Guillermo Rauch">
+          <div class="author-meta">
+            <div class="name">Guillermo Rauch</div>
+            <div class="id-row"><span class="id-tag id-role">@vercel CEO</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Own your intelligence roadmap:
+① Use open SDKs &amp; harnesses
+② Own model choice with Gateways
+③ Own your traces and data, enforce ZDR
+④ Own your models with private inference https://t.co/4Y1dyKDxlm" data-zh="Own your intelligence roadmap:
+① Use open SDKs &amp; harnesses
+② Own model choice with Gateways
+③ Own your traces and data, enforce ZDR
+④ Own your models with private inference https://t.co/4Y1dyKDxlm">Own your intelligence roadmap:
+① Use open SDKs &amp; harnesses
+② Own model choice with Gateways
+③ Own your traces and data, enforce ZDR
+④ Own your models with private inference https://t.co/4Y1dyKDxlm</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/rauchg/status/2122458782294847807" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 273<div class="heat-track"><div class="heat-fill" style="width:6%"></div></div></div>
+        </div>
+      </div></div>
+    </div><div class="cat-group">
+      <div class="cat-group-header">
+        <div class="cat-group-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);">S</div>
+        <h3>行业信号与洞察</h3>
+        <span class="cat-count">6 条动态</span>
+      </div>
+      <div class="detail-grid"><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">possible</span><span class="kw kw-new">Two</span><span class="kw kw-trend">thoughts</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/adityaag" alt="Aditya Agarwal">
+          <div class="author-meta">
+            <div class="name">Aditya Agarwal</div>
+            <div class="id-row"><span class="id-tag id-role">General Partner @SPC</span><span class="id-tag id-company">Co-Founder @Bevel_Health</span><span class="id-tag id-product">Ex: Early Eng @facebook</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Two thoughts:
+1/ Embedding AI as close to the silicon as possible will be critical for a lot of hardtech.
+2/ We can build semi-conductors in India. People said it wasn’t possible. We are proving them wrong.
+
+We’re excited to lead @BharatSemi_'s $24M seed round with Redstart Ventures and IndusBridge. 
+
+Onwards." data-zh="Two thoughts:
+1/ Embedding AI as close to the silicon as possible will be critical for a lot of hardtech.
+2/ We can build semi-conductors in India. People said it wasn’t possible. We are proving them wrong.
+
+We’re excited to lead @BharatSemi_'s $24M seed round with Redstart Ventures and IndusBridge. 
+
+Onwards.">Two thoughts:
+1/ Embedding AI as close to the silicon as possible will be critical for a lot of hardtech.
+2/ We can build semi-conductors in India. People said it wasn’t possible. We are proving them wrong.
+
+We’re excited to lead @BharatSemi_'s $24M seed round with Redstart Ventures and IndusBridge. 
+
+Onwards.</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/adityaag/status/2122386958101959118" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 81<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">This</span><span class="kw kw-new">like</span><span class="kw kw-trend">slop</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/petergyang" alt="Peter Yang">
+          <div class="author-meta">
+            <div class="name">Peter Yang</div>
+            <div class="id-row"><span class="id-tag id-role">Practical AI tutorials and int</span><span class="id-tag id-company">Get my best AI skills and guid</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="This is like AI slop it literally says nothing? Did Megaspeed violate laws or not? https://t.co/SnFyxhyIBw" data-zh="This is like AI slop it literally says nothing? Did Megaspeed violate laws or not? https://t.co/SnFyxhyIBw">This is like AI slop it literally says nothing? Did Megaspeed violate laws or not? https://t.co/SnFyxhyIBw</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/petergyang/status/2122558387162652701" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 13<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">the</span><span class="kw kw-new">Like</span><span class="kw kw-trend">phoenix</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/nikunj" alt="Nikunj Kothari">
+          <div class="author-meta">
+            <div class="name">Nikunj Kothari</div>
+            <div class="id-row"><span class="id-tag id-role">partner @fpvventures - investi</span><span class="id-tag id-company">@opendoor</span><span class="id-tag id-product">@atlassian &amp; others. love @shi</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Like a phoenix, we’re going to see the entire internet burn down to emerge stronger on the other side. 
+
+Hugops to every single infra company 🙏 https://t.co/hkGgv2hmcZ" data-zh="Like a phoenix, we’re going to see the entire internet burn down to emerge stronger on the other side. 
+
+Hugops to every single infra company 🙏 https://t.co/hkGgv2hmcZ">Like a phoenix, we’re going to see the entire internet burn down to emerge stronger on the other side. 
+
+Hugops to every single infra company 🙏 https://t.co/hkGgv2hmcZ</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/nikunj/status/2122490852497125485" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 4<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">together</span><span class="kw kw-new">deleted</span><span class="kw kw-trend">megkernels</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/swyx" alt="Swyx">
+          <div class="author-meta">
+            <div class="name">Swyx</div>
+            <div class="id-row"><span class="id-tag id-role">achieve ambition with intentio</span><span class="id-tag id-company">intensity</span><span class="id-tag id-product">integrity &amp; insanity.</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="together deleted megkernels
+
+https://t.co/3mcdXAmmdR" data-zh="together deleted megkernels
+
+https://t.co/3mcdXAmmdR">together deleted megkernels
+
+https://t.co/3mcdXAmmdR</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/swyx/status/2122566522094915765" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 1<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">gmail</span><span class="kw kw-new">has</span><span class="kw kw-trend">gcal</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/swyx" alt="Swyx">
+          <div class="author-meta">
+            <div class="name">Swyx</div>
+            <div class="id-row"><span class="id-tag id-role">achieve ambition with intentio</span><span class="id-tag id-company">intensity</span><span class="id-tag id-product">integrity &amp; insanity.</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="gmail has no gcal search despite cal is sent via gmail https://t.co/EzdQbPNP6s" data-zh="gmail has no gcal search despite cal is sent via gmail https://t.co/EzdQbPNP6s">gmail has no gcal search despite cal is sent via gmail https://t.co/EzdQbPNP6s</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/swyx/status/2122427240441131203" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 0<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div><div class="detail-card">
+        <div class="kw-row"><span class="kw kw-hot">Make</span><span class="kw kw-new">your</span><span class="kw kw-trend">own</span></div>
+        <div class="author-row">
+          <img class="real-avatar" src="https://unavatar.io/x/nikunj" alt="Nikunj Kothari">
+          <div class="author-meta">
+            <div class="name">Nikunj Kothari</div>
+            <div class="id-row"><span class="id-tag id-role">partner @fpvventures - investi</span><span class="id-tag id-company">@opendoor</span><span class="id-tag id-product">@atlassian &amp; others. love @shi</span></div>
+          </div>
+        </div>
+        <div class="content"><span class="lang-text" data-en="Make your own here: https://t.co/EADcTLXI4H" data-zh="Make your own here: https://t.co/EADcTLXI4H">Make your own here: https://t.co/EADcTLXI4H</span></div>
+        <div class="engagement">
+          <a class="link-btn" href="https://x.com/nikunj/status/2122412013251162592" target="_blank">查看原文 &rarr;</a>
+          <div class="heat-bar">&#10084; 0<div class="heat-track"><div class="heat-fill" style="width:5%"></div></div></div>
+        </div>
+      </div></div>
+    </div>
+        <div class="footer">
+          Powered by <a href="https://github.com/zarazhangrui/follow-builders" target="_blank">Follow Builders</a> | 关注构建者，而非网红
+        </div>
+      </div>
+    </div>
+    <div id="history-view" style="display:none"></div>
+    <div id="favorites-view" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+const TODAY_KEY = document.querySelector('title').textContent.match(/[\d.]+/)?.[0] || new Date().toISOString().slice(0,10).replace(/-/g,'.');
+let currentView = 'today';
+
+function toggleMobileMenu() {
+  document.getElementById('left-sidebar').classList.toggle('mobile-open');
+  document.getElementById('mobile-overlay').classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('left-sidebar').classList.remove('mobile-open');
+  document.getElementById('mobile-overlay').classList.remove('open');
+}
+
+function showToday() {
+  currentView = 'today';
+  document.getElementById('today-view').style.display = '';
+  document.getElementById('history-view').style.display = 'none';
+  document.getElementById('favorites-view').style.display = 'none';
+  highlightDateItem(TODAY_KEY);
+  document.getElementById('fav-nav-btn').classList.remove('active');
+  closeMobileMenu();
+}
+
+function showHistoryDay(dateKey) {
+  if (dateKey === TODAY_KEY) { showToday(); return; }
+  currentView = 'history';
+  const history = JSON.parse(localStorage.getItem('digest-history') || '{}');
+  const day = history[dateKey]; if (!day) return;
+  document.getElementById('today-view').style.display = 'none';
+  document.getElementById('favorites-view').style.display = 'none';
+  const view = document.getElementById('history-view');
+  view.style.display = '';
+  highlightDateItem(dateKey);
+  document.getElementById('fav-nav-btn').classList.remove('active');
+
+  const catLabels = { product: '产品应用', tech: '技术', user: '用户与市场' };
+  const catCls = { product: '#f97316', tech: '#6366f1', user: '#059669' };
+
+  let html = '<div class="history-main-view">';
+  html += '<div class="history-header"><h2>&#128218; 历史回顾</h2><span class="history-date-badge">' + dateKey + '</span></div>';
+
+  if (day.insights && day.insights.length) {
+    html += '<div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:12px;">&#128161; 核心启示</div>';
+    html += '<div class="history-insights-grid">';
+    day.insights.forEach(function(ins) {
+      var cat = catLabels[ins.category] || '启示';
+      var color = catCls[ins.category] || '#6366f1';
+      html += '<div class="history-insight-card">' +
+        '<div class="hi-cat" style="color:' + color + ';">' + cat + '</div>' +
+        '<div class="hi-title">' + (ins.title || '') + '</div>' +
+        '<div class="hi-desc">' + (ins.content || '') + '</div>' +
+        (ins.link ? '<a href="' + ins.link + '" target="_blank" style="font-size:11px;margin-top:6px;display:inline-block;">' + (ins.authorName || '') + ' &rarr;</a>' : '') +
+      '</div>';
+    });
+    html += '</div>';
+  }
+
+  if (day.podcast) {
+    html += '<div style="font-size:13px;font-weight:700;color:var(--text2);margin:24px 0 12px;">&#127911; 播客精选</div>';
+    html += buildPodcastCardHTML(day.podcast, false);
+  }
+
+  if (day.cards && day.cards.length) {
+    html += '<div style="font-size:13px;font-weight:700;color:var(--text2);margin:24px 0 12px;">&#128196; 信息源详情</div>';
+    html += '<div class="history-detail-grid">';
+    day.cards.forEach(function(c) { html += buildCardHTML(c); });
+    html += '</div>';
+  }
+
+  html += '</div>';
+  view.innerHTML = html;
+  closeMobileMenu();
+  window.scrollTo(0, 0);
+}
+
+function showFavorites() {
+  currentView = 'favorites';
+  document.getElementById('today-view').style.display = 'none';
+  document.getElementById('history-view').style.display = 'none';
+  document.getElementById('favorites-view').style.display = '';
+  document.querySelectorAll('.date-item').forEach(function(d) { d.classList.remove('active'); });
+  document.getElementById('fav-nav-btn').classList.add('active');
+  renderFavorites();
+  closeMobileMenu();
+  window.scrollTo(0, 0);
+}
+
+function highlightDateItem(dateKey) {
+  document.querySelectorAll('.date-item').forEach(function(d) {
+    d.classList.toggle('active', d.dataset.date === dateKey);
+  });
+}
+
+function extractPodcastData() {
+  var banner = document.getElementById('podcast-banner');
+  if (!banner) return null;
+  var title = banner.querySelector('h3')?.textContent || '';
+  var showName = banner.querySelector('.podcast-badge')?.textContent?.trim() || 'Podcast';
+  var url = banner.querySelector('.tagline a')?.href || '';
+  var points = [];
+  banner.querySelectorAll('li').forEach(function(li) { points.push(li.textContent.replace('💡','').trim()); });
+  return { type: 'podcast', title: title, showName: showName, url: url, points: points, id: 'podcast-' + btoa(encodeURIComponent(title.slice(0, 50))) };
+}
+
+function extractInsightData(card) {
+  var title = card.querySelector('.title')?.textContent || '';
+  var desc = card.querySelector('.desc')?.textContent || '';
+  var chipEl = card.querySelector('.chip');
+  var link = chipEl?.href || '';
+  var authorName = chipEl?.textContent?.replace(/\s*→\s*$/, '').trim() || '';
+  var col = card.closest('.insight-col');
+  var colHeader = col?.querySelector('.insight-col-header');
+  var category = 'insight';
+  if (colHeader?.classList.contains('col-product')) category = 'product';
+  else if (colHeader?.classList.contains('col-tech')) category = 'tech';
+  else if (colHeader?.classList.contains('col-user')) category = 'user';
+  return { type: 'insight', category: category, title: title, content: desc, link: link, authorName: authorName, avatar: '', kws: [], idTags: [], heat: '', id: btoa(encodeURIComponent(title.slice(0, 50) + authorName)) };
+}
+
+function extractCardData(card) {
+  var kws = [];
+  card.querySelectorAll('.kw').forEach(function(k) { kws.push({ text: k.textContent, cls: k.className }); });
+  var avatar = card.querySelector('.real-avatar');
+  var name = card.querySelector('.name');
+  var idTags = [];
+  card.querySelectorAll('.id-tag').forEach(function(t) { idTags.push({ text: t.textContent, cls: t.className }); });
+  var content = card.querySelector('.content')?.textContent || '';
+  var link = card.querySelector('.link-btn')?.href || '';
+  var heat = card.querySelector('.heat-bar')?.innerHTML || '';
+  return { type: 'detail', kws: kws, content: content, link: link, heat: heat, avatar: avatar?.src || '', authorName: name?.textContent || '', idTags: idTags, id: btoa(encodeURIComponent(content.slice(0, 50) + (name?.textContent || ''))) };
+}
+
+(function saveToday() {
+  var history = JSON.parse(localStorage.getItem('digest-history') || '{}');
+  if (!history[TODAY_KEY]) {
+    var insights = [];
+    document.querySelectorAll('.insight-card[data-bookmarkable]').forEach(function(card) { insights.push(extractInsightData(card)); });
+    var cards = [];
+    document.querySelectorAll('.detail-card').forEach(function(card) { cards.push(extractCardData(card)); });
+    var statPills = [];
+    document.querySelectorAll('.stat-pill').forEach(function(s) { statPills.push(s.textContent); });
+    var podcast = extractPodcastData();
+    history[TODAY_KEY] = { stats: statPills, insights: insights, cards: cards, podcast: podcast, savedAt: Date.now() };
+    localStorage.setItem('digest-history', JSON.stringify(history));
+  }
+  updateBadges();
+  populateDateList();
+})();
+
+(function addInsightBookmarks() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  document.querySelectorAll('.insight-card[data-bookmarkable]').forEach(function(card) {
+    var bottom = card.querySelector('.insight-bottom');
+    if (!bottom) return;
+    var data = extractInsightData(card);
+    var btn = document.createElement('button');
+    btn.className = 'insight-bm-btn'; btn.title = '收藏';
+    if (favs[data.id]) { btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+    else { btn.innerHTML = '&#9734;'; }
+    btn.onclick = function(e) { e.stopPropagation(); toggleBookmark(data, btn); };
+    bottom.appendChild(btn);
+  });
+})();
+
+(function addBookmarkBtns() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  document.querySelectorAll('.detail-card').forEach(function(card) {
+    var eng = card.querySelector('.engagement');
+    if (!eng) return;
+    var data = extractCardData(card);
+    var btn = document.createElement('button');
+    btn.className = 'bm-btn'; btn.title = '收藏';
+    if (favs[data.id]) { btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+    else { btn.innerHTML = '&#9734;'; }
+    btn.onclick = function() { toggleBookmark(data, btn); };
+    eng.appendChild(btn);
+  });
+})();
+
+(function addPodcastBookmark() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  var btn = document.getElementById('podcast-bm-btn');
+  if (!btn) return;
+  var data = extractPodcastData();
+  if (!data) return;
+  if (favs[data.id]) { btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+  btn.onclick = function() {
+    var f = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+    if (f[data.id]) { delete f[data.id]; btn.classList.remove('bookmarked'); btn.innerHTML = '&#9734;'; }
+    else { f[data.id] = Object.assign({}, data, { status: 'unread', date: TODAY_KEY, addedAt: Date.now() }); btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+    localStorage.setItem('digest-favorites', JSON.stringify(f));
+    updateBadges();
+  };
+})();
+
+function toggleBookmark(data, btn) {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  if (favs[data.id]) { delete favs[data.id]; btn.classList.remove('bookmarked'); btn.innerHTML = '&#9734;'; }
+  else { favs[data.id] = { type: data.type, category: data.category, title: data.title, content: data.content, link: data.link, authorName: data.authorName, avatar: data.avatar, kws: data.kws, idTags: data.idTags, heat: data.heat, status: 'unread', date: TODAY_KEY, addedAt: Date.now() }; btn.classList.add('bookmarked'); btn.innerHTML = '&#9733;'; }
+  localStorage.setItem('digest-favorites', JSON.stringify(favs));
+  updateBadges();
+}
+
+function populateDateList() {
+  var history = JSON.parse(localStorage.getItem('digest-history') || '{}');
+  var container = document.getElementById('date-list');
+  var dates = Object.keys(history).sort().reverse();
+  if (!dates.length) { container.innerHTML = '<div style="padding:8px 20px;font-size:12px;color:#64748b;">暂无记录</div>'; return; }
+  container.innerHTML = dates.map(function(d) {
+    var isCurrent = d === TODAY_KEY;
+    var parts = d.split('.');
+    var label = parts[1] + '月' + parseInt(parts[2]) + '日';
+    return '<button class="date-item ' + (isCurrent ? 'active' : '') + '" data-date="' + d + '" onclick="showHistoryDay(\'' + d + '\')">' +
+      '<span class="date-label">' + label + '</span>' +
+      '<span class="date-tag ' + (isCurrent ? 'date-tag-today' : 'date-tag-past') + '">' + (isCurrent ? '今日' : '历史') + '</span>' +
+    '</button>';
+  }).join('');
+}
+
+function buildPodcastCardHTML(p, showFavControls) {
+  var id = p.id || ('podcast-' + btoa(encodeURIComponent((p.title || '').slice(0, 50))));
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  var isFaved = !!favs[id];
+  var html = '<div class="fav-card" style="background:linear-gradient(135deg,rgba(99,102,241,0.06),rgba(139,92,246,0.06));margin-bottom:16px;">';
+  if (showFavControls) {
+    html += '<div class="fav-top-row">' +
+      '<div class="fav-date-label">播客 | ' + (p.date || '') + '</div>' +
+      '<select class="fav-status-select" onchange="changeFavStatus(\'' + id + '\',this.value)">' +
+        '<option value="unread"' + (favs[id]?.status === 'unread' ? ' selected' : '') + '>待阅读</option>' +
+        '<option value="deep"' + (favs[id]?.status === 'deep' ? ' selected' : '') + '>深刻阅读</option>' +
+        '<option value="think"' + (favs[id]?.status === 'think' ? ' selected' : '') + '>待思考</option>' +
+      '</select>' +
+      '<button class="fav-remove-btn" onclick="removeFav(\'' + id + '\')" title="取消收藏">&times;</button>' +
+    '</div>';
+  }
+  html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">' +
+    '<span style="font-size:11px;font-weight:700;background:rgba(99,102,241,0.15);color:#6366f1;padding:2px 8px;border-radius:8px;">&#127911; ' + (p.showName || 'Podcast') + '</span>' +
+  '</div>';
+  html += '<div style="font-size:14px;font-weight:700;margin-bottom:8px;color:var(--text);">' + (p.title || '') + '</div>';
+  if (p.points && p.points.length) {
+    html += '<ul style="padding-left:16px;font-size:12px;color:var(--text2);line-height:1.9;margin-bottom:8px;">' +
+      p.points.slice(0, 5).map(function(pt) { return '<li>' + pt + '</li>'; }).join('') +
+    '</ul>';
+  }
+  html += (p.url ? '<a class="link-btn" href="' + p.url + '" target="_blank" style="font-size:11px;display:inline-flex;">观看完整内容 &rarr;</a>' : '');
+  html += '</div>';
+  return html;
+}
+
+function buildCardHTML(c) {
+  var kwsHTML = (c.kws || []).map(function(k) { return '<span class="' + k.cls + '">' + k.text + '</span>'; }).join('');
+  return '<div class="fav-card">' +
+    (kwsHTML ? '<div class="kw-row" style="margin-bottom:6px;">' + kwsHTML + '</div>' : '') +
+    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">' +
+      (c.avatar ? '<img src="' + c.avatar + '" alt="" style="width:24px;height:24px;border-radius:50%;">' : '') +
+      '<span style="font-size:12px;font-weight:600;">' + (c.authorName || '') + '</span>' +
+    '</div>' +
+    '<div style="font-size:12px;color:var(--text2);line-height:1.6;">' + (c.content || '').slice(0, 200) + ((c.content || '').length > 200 ? '...' : '') + '</div>' +
+    (c.link ? '<a class="link-btn" href="' + c.link + '" target="_blank" style="font-size:11px;margin-top:6px;display:inline-flex;">原文 &rarr;</a>' : '') +
+  '</div>';
+}
+
+var currentFilter = 'all';
+function filterFav(status, btn) {
+  currentFilter = status;
+  document.querySelectorAll('.fav-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderFavorites();
+}
+
+function renderFavorites() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  var view = document.getElementById('favorites-view');
+  var items = Object.entries(favs).sort(function(a, b) { return b[1].addedAt - a[1].addedAt; });
+  if (currentFilter !== 'all') items = items.filter(function(e) { return e[1].status === currentFilter; });
+  var catLabels = { product: '产品启示', tech: '技术启示', user: '用户启示' };
+
+  var html = '<div class="fav-main-view">';
+  html += '<div class="fav-header"><h2>&#11088; 我的收藏</h2></div>';
+  html += '<div class="fav-filters">' +
+    '<button class="fav-filter-btn ' + (currentFilter === 'all' ? 'active' : '') + '" onclick="filterFav(\'all\',this)">全部 (' + Object.keys(favs).length + ')</button>' +
+    '<button class="fav-filter-btn ' + (currentFilter === 'unread' ? 'active' : '') + '" onclick="filterFav(\'unread\',this)">待阅读</button>' +
+    '<button class="fav-filter-btn ' + (currentFilter === 'deep' ? 'active' : '') + '" onclick="filterFav(\'deep\',this)">深刻阅读</button>' +
+    '<button class="fav-filter-btn ' + (currentFilter === 'think' ? 'active' : '') + '" onclick="filterFav(\'think\',this)">待思考</button>' +
+  '</div>';
+
+  if (!items.length) {
+    html += '<div class="fav-empty-msg">' + (currentFilter === 'all' ? '还没有收藏内容。点击卡片上的 &#9734; 按钮收藏。' : '该分类下暂无内容。') + '</div>';
+  } else {
+    html += '<div class="fav-grid">';
+    items.forEach(function(entry) {
+      var id = entry[0], f = entry[1];
+      if (f.type === 'podcast') {
+        html += buildPodcastCardHTML(f, true);
+      } else {
+        var isInsight = f.type === 'insight';
+        var catLabel = isInsight && f.category ? (catLabels[f.category] || '启示') : '';
+        html += '<div class="fav-card">' +
+          '<div class="fav-top-row">' +
+            '<div class="fav-date-label">' + (catLabel ? catLabel + ' | ' : '') + (f.date || '') + '</div>' +
+            '<select class="fav-status-select" onchange="changeFavStatus(\'' + id + '\',this.value)">' +
+              '<option value="unread"' + (f.status === 'unread' ? ' selected' : '') + '>待阅读</option>' +
+              '<option value="deep"' + (f.status === 'deep' ? ' selected' : '') + '>深刻阅读</option>' +
+              '<option value="think"' + (f.status === 'think' ? ' selected' : '') + '>待思考</option>' +
+            '</select>' +
+            '<button class="fav-remove-btn" onclick="removeFav(\'' + id + '\')" title="取消收藏">&times;</button>' +
+          '</div>' +
+          (isInsight ? '<div style="font-weight:700;font-size:13px;margin-bottom:4px;">' + (f.title || '') + '</div>' : '') +
+          '<div style="font-size:12px;color:var(--text2);line-height:1.6;">' + (f.content || '').slice(0, 200) + '</div>' +
+          (f.link ? '<a class="link-btn" href="' + f.link + '" target="_blank" style="font-size:11px;margin-top:6px;display:inline-flex;">原文 &rarr;</a>' : '') +
+        '</div>';
+      }
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  view.innerHTML = html;
+  updateBadges();
+}
+
+function changeFavStatus(id, status) {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  if (favs[id]) { favs[id].status = status; localStorage.setItem('digest-favorites', JSON.stringify(favs)); renderFavorites(); }
+}
+
+function removeFav(id) {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  delete favs[id]; localStorage.setItem('digest-favorites', JSON.stringify(favs));
+  document.querySelectorAll('.bm-btn, .insight-bm-btn').forEach(function(btn) {
+    var card = btn.closest('.detail-card') || btn.closest('.insight-card');
+    if (!card) return;
+    var data = card.classList.contains('insight-card') ? extractInsightData(card) : extractCardData(card);
+    if (data.id === id) { btn.classList.remove('bookmarked'); btn.innerHTML = '&#9734;'; }
+  });
+  renderFavorites();
+}
+
+function updateBadges() {
+  var favs = JSON.parse(localStorage.getItem('digest-favorites') || '{}');
+  document.getElementById('badge-fav').textContent = Object.keys(favs).length;
+}
+
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && currentView !== 'today') showToday(); });
+
+// ===== Language Toggle =====
+var currentLang = localStorage.getItem('digest-lang') || 'zh';
+function applyLang() {
+  document.querySelectorAll('.lang-text').forEach(function(el) {
+    el.textContent = el.dataset[currentLang] || el.dataset.en || '';
+  });
+  var btn = document.getElementById('lang-toggle');
+  if (btn) btn.textContent = currentLang === 'zh' ? '中文' : 'EN';
+}
+function toggleLang() {
+  currentLang = currentLang === 'zh' ? 'en' : 'zh';
+  localStorage.setItem('digest-lang', currentLang);
+  applyLang();
+}
+applyLang();
+</script>
+</body>
+</html>
